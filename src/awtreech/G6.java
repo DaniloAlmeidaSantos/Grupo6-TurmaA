@@ -23,11 +23,37 @@ public class G6 {
 	ArrayList<String> qResponses = new ArrayList<>();
 
 	/**
-	 * 
-	 */
-	public void level() {
-		
-	}
+     * Foi determinado nos cases de 1 a 3 o total de vidas extras
+     * 
+     * Descrição dos parâmetros:
+     * @param selectLevel : definir nível escolhido pelo usuário
+     */
+    public void level(int selectLevel) {
+
+
+        switch(selectLevel){
+
+            case 1:
+                System.out.println("Nivel easy selecionado, Voce tem 3 vidas extras");
+                principal.easy(1, push, 3);
+                break;
+
+            case 2:
+                System.out.println("Nivel medium selecionado, Voce tem 2 vidas extras");
+                principal.medium(1, push, 2);
+                break;
+
+            case 3:
+                System.out.println("Nivel medium selecionado, Voce tem 2 vidas extras");
+                principal.hard(1, push, 1);
+                break;
+
+            default:
+                System.out.println("Nivel Invalido");
+                principal.level(3);
+                break;
+        }
+    }
 
 	/**
 	 * Gateway para sair do jogo
@@ -76,7 +102,7 @@ public class G6 {
 
 				case 2: // Histórias e desafios - Médio
 										// Caso o player exceda o número de vidas o jogo finalizado
-					if (eLife <= 0) principal.medium(nQuestion, push = true, eLife);
+					if (eLife < 0) principal.medium(nQuestion, push = true, eLife);
 					// Caso o jogador erre, mas tenha mais vidas extras ele pode responder novamente
 					else principal.medium(nQuestion, push = false, eLife); 
 					break;
@@ -256,6 +282,6 @@ public class G6 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		principal.level();
+		principal.level(4);
 	}
 }
