@@ -16,7 +16,7 @@ public class G6 {
 	static G6 principal = new G6();
 
 	// Scanner Global
-	Scanner input = new Scanner(System.in);
+	static Scanner input = new Scanner(System.in);
 
 	// Var Global
 	private boolean push = false; // Push : True = Encerra o jogo, False = Não encerra o jogo
@@ -229,7 +229,8 @@ public class G6 {
 						principal.gateway(alternativa, extraLife, qQuestions[index], 2, nQuestion); // Chamando o gateway
 						break;
 
-					case 2:			
+					case 2:
+						// code
 						break;
 					case 3:			
 						break;
@@ -304,16 +305,70 @@ public class G6 {
 	}
 
 	/**
+	 * Retorna histórias referentes aos cápitulos
 	 * 
+	 * Descrição do(s) parâmetro(s):
+	 * @param cap : Cáptitulo que o jogo se encontra
 	 */
-	public void stories() {
+	public void stories(int cap) {
+		
+	}
 
+	/**
+	 * Retorna instruções para o jogo
+	 * 
+	 * Descrição do(s) parâmetro(s):
+	 */
+	public void instructions(int cap) {
+		
+	}
+	
+	/**
+	 * Retorna menu do do jogo
+	 * 
+	 * Descrição do(s) parâmetro(s):
+	 */
+	public void menu(int option) {
+		switch (option) {
+			case 1: // Jogo
+				principal.level(2);
+				break;
+			case 2: // Sair
+				principal.exit();
+				break;
+			case 3: // Créditos
+				principal.credits();
+				break;
+		
+			default:
+				System.out.println("Tente novamente");
+				break;
+		}
+	}
+
+	
+	/**
+	 * Retorna créditos do jogo
+	 * 
+	 * Descrição do(s) parâmetro(s):
+	 */
+	public void credits(){
+		System.out.println("Criadores do jogo: ");
+		System.out.println("Danilo Almeida dos Santos");
+		System.out.println("Fernando Martiniano");
+		System.out.println("Guilherme Monteiro");
 	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		principal.level(4);
+		try {
+			System.out.println("Digite alguma coisa");
+			int value = input.nextInt();
+			principal.menu(value);
+		} catch (Exception e) {
+			System.err.println(e);
+		}
 	}
 }
