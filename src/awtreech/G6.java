@@ -22,6 +22,8 @@ public class G6 {
 	private boolean push = false; // Push : True = Encerra o jogo, False = Não encerra o jogo
 	private String qQuestions[] = {"a", "b", "c", "d", "e"}; // Alternativas disponíveis no jogo
 	private ArrayList<String> qResponses = new ArrayList<>();
+	static String name; //name do jogador
+	static int level; // easy = 1 , medium = 2 , hard = 3
 
 	/**
      * Foi determinado nos cases de 1 a 3 o total de vidas extras
@@ -322,11 +324,16 @@ public class G6 {
 	 * Retorna menu do do jogo
 	 * 
 	 * Descrição do(s) parâmetro(s):
+	 * @param option : opção escolhida pelo usuário
 	 */
 	public void menu(int option) {
 		switch (option) {
 			case 1: // Jogo
-				principal.level(2);
+				System.out.println("Colocar história aqui, qual seu nome?");
+				name = input.next();
+				System.out.println("Diga, de 1 a 3 qual seu nível em programação?");
+				level = input.nextInt();
+				principal.level(level);
 				break;
 			case 2: // Créditos
 				principal.credits();
