@@ -22,6 +22,8 @@ public class G6 {
 	private boolean push = false; // Push : True = Encerra o jogo, False = NÃ£o encerra o jogo
 	private String qQuestions[] = {"a", "b", "c", "d", "e"}; // Alternativas disponÃ­veis no jogo
 	private ArrayList<String> qResponses = new ArrayList<>();
+	static String nome; //Nome do jogador
+	static int level; // easy = 1 , medium = 2 , hard = 3
 
 	/**
      * Foi determinado nos cases de 1 a 3 o total de vidas extras
@@ -30,26 +32,26 @@ public class G6 {
      * @param selectLevel : definir nÃ­vel escolhido pelo usuÃ¡rio
      */
     public void level(int selectLevel) {
-		try {
-			switch(selectLevel){
+		try {			
+			switch(level){
 
 				case 1:
-					System.out.println("Nivel easy selecionado, Voce tem 3 vidas extras");
+					System.out.println("Nível easy selecionado, você tem 3 vidas extras");
 					principal.easy(1, this.push, 3);
 					break;
 	
 				case 2:
-					System.out.println("Nivel medium selecionado, Voce tem 2 vidas extras");
+					System.out.println("Nível medium selecionado, você tem 2 vidas extras");
 					principal.medium(1, this.push, 2, false);
 					break;
 	
 				case 3:
-					System.out.println("Nivel medium selecionado, Voce tem 2 vidas extras");
+					System.out.println("Nível hard selecionado, você tem 1 vida extra");
 					principal.hard(1, this.push, 1);
 					break;
 	
 				default:
-					System.out.println("Nivel Invalido");
+					System.out.println("Nível Invalido");
 					principal.level(3);
 					break;
 			}
@@ -364,9 +366,12 @@ public class G6 {
 	 */
 	public static void main(String[] args) {
 		try {
-			System.out.println("Digite alguma coisa");
-			int value = input.nextInt();
-			principal.menu(value);
+			System.out.println("Colocar história aqui, qual seu nome?");
+			nome = input.next();
+			System.out.println("Diga, de 1 a 3 qual seu nível em programação?");
+			level = input.nextInt();
+			principal.level(level);
+			
 		} catch (Exception e) {
 			System.err.println(e);
 		}
