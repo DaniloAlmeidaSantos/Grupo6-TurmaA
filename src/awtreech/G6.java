@@ -34,17 +34,17 @@ public class G6 {
 			switch(selectLevel){
 
 				case 1:
-					System.out.println("Nivel easy selecionado, Voce tem 3 vidas extras");
+					System.out.println("Nivel fácil selecionado, Voce tem 3 vidas extras");
 					principal.easy(1, this.push, 3);
 					break;
 	
 				case 2:
-					System.out.println("Nivel medium selecionado, Voce tem 2 vidas extras");
+					System.out.println("Nivel médio selecionado, Voce tem 2 vidas extras");
 					principal.medium(1, this.push, 2, false);
 					break;
 	
 				case 3:
-					System.out.println("Nivel medium selecionado, Voce tem 2 vidas extras");
+					System.out.println("Nivel difícil selecionado, Voce tem 2 vidas extras");
 					principal.hard(1, this.push, 1);
 					break;
 	
@@ -63,13 +63,6 @@ public class G6 {
 	 */
 	public void exit() {
 		System.exit(0);
-	}
-
-	/**
-	 * 
-	 */
-	public void instructions() {
-		
 	}
 
 	/**
@@ -205,15 +198,17 @@ public class G6 {
 						qResponses.clear();
 						
 						// Chamar push da história positiva
-						qResponses.add("101010"); // resposta correta
-						qResponses.add("101011");
-						qResponses.add("111010");
-						qResponses.add("101110");
-						qResponses.add("101111");
+						qResponses.add("Incrementar x de 1 em 1."); // resposta correta
+						qResponses.add("Tirar a estrutura de decisão.");
+						qResponses.add("Colocar mais um laço de repetição.");
+						qResponses.add("Utilizar o laço FOR.");
+						qResponses.add("Nenhuma dessas opções.");
 
-						Collections.shuffle(qResponses);
+						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("O valor em binário do decimal 42 é:");
+						System.out.println("\nPrecisamos de laço de repetição que leia apenas dois input x e y, e vá de x até y, e lance diariamente uma média da distância de um valor ao outro, sendo eles números pares.");
+						System.out.println("Entretanto, ao rodar o seguinte código: \n\nwhile (x <= y) { \n    if (x%2 == 0) \n       System.out.println((x + y) / x);  \n} ");
+						System.out.println("\n O código fica em um loop infinito. Logicamente pensando, o que deve ser feito para resolver este problema?\n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -222,7 +217,7 @@ public class G6 {
 						System.out.print("Escolha uma alternativa: ");
 
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("101010"))	index = i;
+							if (qResponses.get(i).equals("Incrementar x de 1 em 1."))	index = i;
 						}
 
 						alternativa = input.next();	
@@ -333,15 +328,22 @@ public class G6 {
 			case 1: // Jogo
 				principal.level(2);
 				break;
-			case 2: // Sair
-				principal.exit();
-				break;
-			case 3: // Créditos
+			case 2: // Créditos
 				principal.credits();
+				break;
+			case 3: // Sair
+				principal.exit();
 				break;
 		
 			default:
-				System.out.println("Tente novamente");
+				System.out.println("\nComando inválido. Tente novamente.");
+				System.out.println("AWTreech");
+				System.out.println("1 - Jogar");
+				System.out.println("2 - Créditos");
+				System.out.println("3 - Sair");
+				System.out.print("\nDigite algum comando: ");
+				int value = input.nextInt();
+				principal.menu(value);
 				break;
 		}
 	}
@@ -353,10 +355,10 @@ public class G6 {
 	 * Descrição do(s) parâmetro(s):
 	 */
 	public void credits(){
-		System.out.println("Criadores do jogo: ");
-		System.out.println("Danilo Almeida dos Santos");
-		System.out.println("Fernando Martiniano");
-		System.out.println("Guilherme Monteiro");
+		System.out.println("\n \tCriadores do jogo: \n");
+		System.out.println("\tDanilo Almeida dos Santos");
+		System.out.println("\tFernando Martiniano");
+		System.out.println("\tGuilherme Monteiro \n");
 	}
 
 	/**
@@ -364,9 +366,15 @@ public class G6 {
 	 */
 	public static void main(String[] args) {
 		try {
-			System.out.println("Digite alguma coisa");
+			System.out.println("\tAWTreech\n");
+			System.out.println("1 - Jogar");
+			System.out.println("2 - Créditos");
+			System.out.println("3 - Sair");
+			System.out.print("\nDigite algum comando: ");
+
 			int value = input.nextInt();
 			principal.menu(value);
+
 		} catch (Exception e) {
 			System.err.println(e);
 		}
