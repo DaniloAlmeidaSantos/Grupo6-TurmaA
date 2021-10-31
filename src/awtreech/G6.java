@@ -462,49 +462,69 @@ public class G6 {
 	 * @param extraLife : Vidas extras do player
 	 */
 	public void hard(int nQuestion, boolean noPush, int extraLife) {
-		
-		String alternativa;	
+		// Limpando a tela
+		principal.clearScreen();
+		try {
+			String alternativa;	
+			int index = 0;
 
-		if (noPush) {
-			// Saída - Histórias negativas
-		} else {
-			// Saída histórias positivas
-			switch (nQuestion) {
-				case 1:
-					// Chamar push da história positiva
-					qResponses.add("101010");
-					qResponses.add("101011");
-					qResponses.add("111010");
-					qResponses.add("101110");
-					qResponses.add("101111");
+			if (noPush) {
+				principal.stories(8, false);
+				System.out.println("GAME OVER!");
+				principal.exit();
+			} else {
+				System.out.println("Você tem "+ extraLife + " restante(s)");
+				// Saída histórias positivas
+				switch (nQuestion) {
+					case 1:
+						System.out.println("\n Desafio: " + nQuestion);			
+						qResponses.clear();
+								
+						qResponses.add("do while"); // resposta correta
+						qResponses.add("while");
+						qResponses.add("if");
+						qResponses.add("foreach");
+						qResponses.add("O que melhor se adequar a sua regra de negócio.");
 
-					System.out.println("O valor em binário do decimal 42 é:");
-					System.out.println(qQuestions[0] + ") " + qResponses.get(0)); // resposta correta
-					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
-					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
-					System.out.println(qQuestions[3] + ") " + qResponses.get(3));
-					System.out.println(qQuestions[4] + ") " + qResponses.get(4));
-					System.out.print("Escolha uma alternativa: ");
+						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-					alternativa = input.next();	
-					principal.gateway(alternativa, extraLife, qQuestions[0], 2, nQuestion, false); // Chamando o gateway
-					break;
+						System.out.println("\nFoi decidido que uma execução de código deve entrar em um laço de repetição.");
+						System.out.println("Entretanto, precisamos executar o código dentro deste laço pela primeira vez, posteriormente validar se o código deverá ficar em loop.");
+						System.out.println("\n Logicamente pensando nos modelos de execuçõs dos laços, qual o melhor laço a se utilizar nesta situação? \n");
+						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
+						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+						System.out.println(qQuestions[3] + ") " + qResponses.get(3));
+						System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+						System.out.print("Escolha uma alternativa: ");
 
-				case 2:			
-					break;
-				case 3:			
-					break;
-				case 4:				
-					break;
-				case 5:			
-					break;
-				case 6:				
-					break;
-				case 7:
+						for (int i = 0; i < 5; i++) {
+							if (qResponses.get(i).equals("do while"))	index = i;
+						}
 
-					break;
+						alternativa = input.next();	
+						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
+						break;
+
+					case 2:			
+						break;
+					case 3:			
+						break;
+					case 4:				
+						break;
+					case 5:			
+						break;
+					case 6:				
+						break;
+					case 7:
+
+						break;
+				}
 			}
+		} catch (Exception e) {
+			System.err.println(e);
 		}
+		
 	}
 
 	/**
