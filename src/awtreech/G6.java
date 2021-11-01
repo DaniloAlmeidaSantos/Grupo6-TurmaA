@@ -99,7 +99,10 @@ public class G6 {
 					nQuestion++;
 					switch (level) {
 						case 1: // Hist√≥rias e desafios - F√°cil
-							System.out.println("Colocar f√°cil aqui");
+							System.out.println("\n Resposta correta \n");
+							principal.stories(nQuestion, true);
+							principal.coteTime(3000);
+							principal.easy(nQuestion, this.push, eLife);
 							break;
 
 						case 2: // Hist√≥rias e desafios - M√©dio
@@ -110,7 +113,10 @@ public class G6 {
 							break;
 							
 						case 3: // Hist√≥rias e desafios - Dif√≠cil
-							System.out.println("Colocar dificil aqui");
+							System.out.println("\n Resposta correta \n");
+							principal.stories(nQuestion, true);
+							principal.coteTime(3000);
+							principal.hard(nQuestion, this.push, eLife);
 							break;
 					}
 				}
@@ -480,17 +486,17 @@ public class G6 {
 						System.out.println("\n Desafio: " + nQuestion);			
 						qResponses.clear();
 								
-						qResponses.add("do while"); // resposta correta
-						qResponses.add("while");
-						qResponses.add("if");
-						qResponses.add("foreach");
-						qResponses.add("O que melhor se adequar a sua regra de neg√≥cio.");
+						qResponses.add("Quando se sabe o ponto inicial e final, sabendo quantas vezes o cÛdigo vai ser rodado."); // resposta correta
+						qResponses.add("Para executar o cÛdigo ao mÌnimo uma vez.");
+						qResponses.add("Para verificar a condiÁ„o antes de executar o cÛdigo.");
+						qResponses.add("Quando È necess·rio executar outra estrutura de repetiÁ„o dentro da estrutura.");
+						qResponses.add("Quando È preciso tratar apenas de uma vari·vel.");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\nFoi decidido que uma execu√ß√£o de c√≥digo deve entrar em um la√ßo de repeti√ß√£o.");
-						System.out.println("Entretanto, precisamos executar o c√≥digo dentro deste la√ßo pela primeira vez, posteriormente validar se o c√≥digo dever√° ficar em loop.");
-						System.out.println("\n Logicamente pensando nos modelos de execu√ß√µs dos la√ßos, qual o melhor la√ßo a se utilizar nesta situa√ß√£o? \n");
+						System.out.println("\n As estruturas de repetiÁ„o muitas vezes podem ser trocadas por outras sem afetar o funcionamento do programa, ");
+						System.out.println("tambÈm cabe ao programador ou a equipe decidir entre essas estruturas devido ao seu funcionamento ser muito parecido, ");
+						System.out.println("em quais momentos È melhor utilizar a estrutura for ao invÈs de outras? \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -499,24 +505,176 @@ public class G6 {
 						System.out.print("Escolha uma alternativa: ");
 
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("do while"))	index = i;
+							if (qResponses.get(i).equals("Quando se sabe o ponto inicial e final, sabendo quantas vezes o cÛdigo vai ser rodado."))	index = i;
 						}
 
 						alternativa = input.next();	
 						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
 
-					case 2:			
+					case 2:
+						System.out.println("\n Desafio: " + nQuestion);			
+						qResponses.clear();
+								
+						qResponses.add("Fechar a estrutura de repetiÁ„o"); // resposta correta
+						qResponses.add("Sair de uma condicional (Ex: if)");
+						qResponses.add("Cancelar o funcionamento em apenas um momento, continuando logo apÛs");
+						qResponses.add("Cancelar toda a operaÁ„o, atÈ aquela que j· foi feita anteriormente");
+						qResponses.add("A funÁ„o aparece somente na presenÁa da estrutura Switch");
+
+						Collections.shuffle(qResponses); // Embaralhando alternativas
+
+						System.out.println("\n Qual o funcionamento da funÁ„o break dentro dos laÁos de repetiÁ„o? \n");
+						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
+						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+						System.out.println(qQuestions[3] + ") " + qResponses.get(3));
+						System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+						System.out.print("Escolha uma alternativa: ");
+
+						for (int i = 0; i < 5; i++) {
+							if (qResponses.get(i).equals("Fechar a estrutura de repetiÁ„o"))	index = i;
+						}
+
+						alternativa = input.next();	
+						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
-					case 3:			
+					case 3:
+						System.out.println("\n Desafio: " + nQuestion);			
+						qResponses.clear();
+								
+						qResponses.add("As funÁıes static executam uma funÁ„o sem dependÍncia do conte˙do de um objeto"); // resposta correta
+						qResponses.add("FunÁıes static s„o apenas usadas para retornar valores");
+						qResponses.add("Apenas o main È uma funÁ„o static");
+						qResponses.add("FunÁıes static executam uma funÁ„o apenas na dependÍncia do conte˙do de um objeto");
+						qResponses.add("As duas funÁıes apresentam as mesmas caracterÌsticas");
+
+						Collections.shuffle(qResponses); // Embaralhando alternativas
+
+						System.out.println("\n Qual a diferenÁa entre funÁıes static e n„o static? \n");
+						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
+						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+						System.out.println(qQuestions[3] + ") " + qResponses.get(3));
+						System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+						System.out.print("Escolha uma alternativa: ");
+
+						for (int i = 0; i < 5; i++) {
+							if (qResponses.get(i).equals("As funÁıes static executam uma funÁ„o sem dependÍncia do conte˙do de um objeto"))	index = i;
+						}
+
+						alternativa = input.next();	
+						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
-					case 4:				
+					case 4:
+						System.out.println("\n Desafio: " + nQuestion);			
+						qResponses.clear();
+								
+						qResponses.add("Para aproveitar o mesmo mÈtodo novamente no cÛdigo"); // resposta correta
+						qResponses.add("Pois alguns procedimentos funcionam apenas se colocados sozinhos em funÁıes");
+						qResponses.add("Pois a funÁ„o main funciona apenas utilizando outras funÁıes");
+						qResponses.add("Para deixar o cÛdigo mais limpo para o usu·rio");
+						qResponses.add("FunÁıes alÈm do main s„o exclusivas do Java, pois o programa exige que tudo esteja separado");
+
+						Collections.shuffle(qResponses); // Embaralhando alternativas
+
+						System.out.println("\n Por qual motivo se torna v·lido utilizar funÁıes em cÛdigos \n");
+						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
+						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+						System.out.println(qQuestions[3] + ") " + qResponses.get(3));
+						System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+						System.out.print("Escolha uma alternativa: ");
+
+						for (int i = 0; i < 5; i++) {
+							if (qResponses.get(i).equals("Para aproveitar o mesmo mÈtodo novamente no cÛdigo"))	index = i;
+						}
+
+						alternativa = input.next();	
+						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
-					case 5:			
+					case 5:
+						System.out.println("\n Desafio: " + nQuestion);			
+						qResponses.clear();
+								
+						qResponses.add("FunÁıes static s„o chamadas utilizando o nome da classe e o nome da funÁ„o"); // resposta correta
+						qResponses.add("N„o existe diferenÁa");
+						qResponses.add("FunÁıes n„o static s„o chamadas utilizando o nome da classe e o nome da funÁ„o");
+						qResponses.add("N„o existe diferenÁa entre elas, apenas onde s„o chamadas");
+						qResponses.add("FunÁıes static s„o chamadas utilizando somente o nome da funÁ„o");
+
+						Collections.shuffle(qResponses); // Embaralhando alternativas
+
+						System.out.println("\n Qual a diferenÁa em chamar uma funÁ„o static e uma funÁ„o n„o static? \n");
+						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
+						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+						System.out.println(qQuestions[3] + ") " + qResponses.get(3));
+						System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+						System.out.print("Escolha uma alternativa: ");
+
+						for (int i = 0; i < 5; i++) {
+							if (qResponses.get(i).equals("FunÁıes static s„o chamadas utilizando o nome da classe e o nome da funÁ„o"))	index = i;
+						}
+
+						alternativa = input.next();	
+						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
-					case 6:				
+					case 6:
+						System.out.println("\n Desafio: " + nQuestion);			
+						qResponses.clear();
+								
+						qResponses.add("Para sinalizar que pode ser chamado em qualquer lugar"); // resposta correta
+						qResponses.add("Para sinalizar que pode ser chamado em qualquer lugar dentro das classes que usam a principal como base");
+						qResponses.add("Para sinalizar a funÁ„o main");
+						qResponses.add("A palavra n„o possui nenhuma funÁ„o");
+						qResponses.add("Apenas classes do mesmo pacote podem chamar o mÈtodo");
+
+						Collections.shuffle(qResponses); // Embaralhando alternativas
+
+						System.out.println("\n Qual a funÁ„o da palavra public antes do mÈtodo? \n");
+						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
+						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+						System.out.println(qQuestions[3] + ") " + qResponses.get(3));
+						System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+						System.out.print("Escolha uma alternativa: ");
+
+						for (int i = 0; i < 5; i++) {
+							if (qResponses.get(i).equals("Para sinalizar que pode ser chamado em qualquer lugar"))	index = i;
+						}
+
+						alternativa = input.next();	
+						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
 					case 7:
+						System.out.println("\n Desafio: " + nQuestion);			
+						qResponses.clear();
+								
+						qResponses.add("10"); // resposta correta
+						qResponses.add("9");
+						qResponses.add("12");
+						qResponses.add("11");
+						qResponses.add("13");
+
+						Collections.shuffle(qResponses); // Embaralhando alternativas
+
+						System.out.println("\n Qual o valor de a ao final do cÛdigo");
+						System.out.println("int a = 0, b = 0, c;");
+						System.out.println("\n while (b<=3) { \n 	for (c = b; c <=3; c++) { \n a = a + 1 } \n b++ } \n System.out.println(a); \n");
+						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
+						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+						System.out.println(qQuestions[3] + ") " + qResponses.get(3));
+						System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+						System.out.print("Escolha uma alternativa: ");
+
+						for (int i = 0; i < 5; i++) {
+							if (qResponses.get(i).equals("10"))	index = i;
+						}
+
+						alternativa = input.next();	
+						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 
 						break;
 				}
