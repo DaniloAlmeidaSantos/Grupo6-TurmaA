@@ -84,6 +84,7 @@ public class G6 {
 	 * @param cQuestion : Resposta correta para validação
 	 * @param level : Nível do jogo
 	 * @param nQuestion : Número da questão
+	 * @param bonusQ : Verrifica se tem questão bônus pendente
 	 */
 	public void gateway(String data, int eLife,  String cQuestion, int level, int nQuestion, boolean bonusQ) {
 		try {
@@ -245,7 +246,7 @@ public class G6 {
 						qResponses.clear();
 
 						principal.stories(14, true);
-
+						// Adicionando possíveis respostas
 						qResponses.add("Incrementar x de 1 em 1."); // resposta correta
 						qResponses.add("Tirar a estrutura de decisão.");
 						qResponses.add("Colocar mais um laço de repetição.");
@@ -263,19 +264,20 @@ public class G6 {
 						System.out.println(qQuestions[3] + ") " + qResponses.get(3));
 						System.out.println(qQuestions[4] + ") " + qResponses.get(4));
 						System.out.print("Escolha uma alternativa: ");
-
+						// Verifica qual a resposta correta e seta o index da alternativa certa
 						for (int i = 0; i < 5; i++) {
 							if (qResponses.get(i).equals("Incrementar x de 1 em 1."))	index = i;
 						}
 
 						alternativa = input.next();	
+						// Chamada do gateway para validação de respostas
 						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
 
 					case 2:
 						System.out.println("\n Desafio: " + nQuestion);
 						qResponses.clear();
-							
+						// Adicionando possíveis respostas	
 						qResponses.add("do while"); // resposta correta
 						qResponses.add("while");
 						qResponses.add("if");
@@ -293,29 +295,29 @@ public class G6 {
 						System.out.println(qQuestions[3] + ") " + qResponses.get(3));
 						System.out.println(qQuestions[4] + ") " + qResponses.get(4));
 						System.out.print("Escolha uma alternativa: ");
-
+						// Verifica qual a resposta correta e seta o index da alternativa certa
 						for (int i = 0; i < 5; i++) {
 							if (qResponses.get(i).equals("do while"))	index = i;
 						}
 
-						alternativa = input.next();	
+						alternativa = input.next();
+						// Chamada do gateway para validação de respostas	
 						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
 					case 3:	
 						System.out.println("\n Desafio: " + nQuestion);
 						qResponses.clear();
 
-						qResponses.add("do while"); // resposta correta
-						qResponses.add("while");
-						qResponses.add("if");
-						qResponses.add("foreach");
-						qResponses.add("O que melhor se adequar a sua regra de negócio.");
+						// Adicionando possíveis respostas
+						qResponses.add("Utilizar a função Math.pow(base, expoente)"); // resposta correta
+						qResponses.add("Utilizar o laço de repetição multiplicando o resultado com a base x vezes definido pelo expoente");
+						qResponses.add("Utilizar o if para descobrir qual é o expoente");
+						qResponses.add("Utilizar o função Math.sqrt(base, expoente)");
+						qResponses.add("Nenhuma dessas opções");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\nFoi decidido que uma execução de código deve entrar em um laço de repetição.");
-						System.out.println("Entretanto, precisamos executar o código dentro deste laço pela primeira vez, posteriormente validar se o código deverá ficar em loop.");
-						System.out.println("\n Logicamente pensando nos modelos de execuçõs dos laços, qual o melhor laço a se utilizar nesta situação? \n");
+						System.out.println("\n Dado que seja necessário o usuário digitar a base e o expoente, qual a forma mais simplificada de codificar essa necessidade?");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -323,46 +325,45 @@ public class G6 {
 						System.out.println(qQuestions[4] + ") " + qResponses.get(4));
 						System.out.print("Escolha uma alternativa: ");
 
+						// Verifica qual a resposta correta e seta o index da alternativa certa
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("do while"))	index = i;
+							if (qResponses.get(i).equals("Utilizar a função Math.pow(base, expoente)"))	index = i;
 						}
 
 						alternativa = input.next();	
+						// Chamada do gateway para validação de respostas
 						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
 					case 4:			
 						System.out.println("\n Desafio: " + nQuestion);	
 						qResponses.clear();
-								
-						qResponses.add("do while"); // resposta correta
-						qResponses.add("while");
-						qResponses.add("if");
-						qResponses.add("foreach");
-						qResponses.add("O que melhor se adequar a sua regra de negócio.");
+						// Adicionando possíveis respostas
+						qResponses.add("Verdadeiro"); 
+						qResponses.add("Falso"); // resposta correta
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\nFoi decidido que uma execução de código deve entrar em um laço de repetição.");
-						System.out.println("Entretanto, precisamos executar o código dentro deste laço pela primeira vez, posteriormente validar se o código deverá ficar em loop.");
-						System.out.println("\n Logicamente pensando nos modelos de execuçõs dos laços, qual o melhor laço a se utilizar nesta situação? \n");
+						System.out.println("\n Olhe para este código:");
+						System.out.println("\n Scanner input = new Scanner(System.in); \n System.out.println('Digite um valor numérico: ');\n int n1 = input.nextDouble();");
+						System.out.println("\n if (n1 % 2 == 0) \n      System.out.println(n1);");
+						System.out.println("\n Este é SIM funcional. \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
-						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
-						System.out.println(qQuestions[3] + ") " + qResponses.get(3));
-						System.out.println(qQuestions[4] + ") " + qResponses.get(4));
 						System.out.print("Escolha uma alternativa: ");
 
-						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("do while"))	index = i;
+						// Verifica qual a resposta correta e seta o index da alternativa certa
+						for (int i = 0; i < 2; i++) {
+							if (qResponses.get(i).equals("Falso"))	index = i;
 						}
 
 						alternativa = input.next();	
+						// Chamada do gateway para validação de respostas
 						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
 					case 5:	
 						System.out.println("\n Desafio: " + nQuestion);		
 						qResponses.clear();
-								
+						// Adicionando possíveis respostas		
 						qResponses.add("do while"); // resposta correta
 						qResponses.add("while");
 						qResponses.add("if");
@@ -380,12 +381,13 @@ public class G6 {
 						System.out.println(qQuestions[3] + ") " + qResponses.get(3));
 						System.out.println(qQuestions[4] + ") " + qResponses.get(4));
 						System.out.print("Escolha uma alternativa: ");
-
+						// Verifica qual a resposta correta e seta o index da alternativa certa
 						for (int i = 0; i < 5; i++) {
 							if (qResponses.get(i).equals("do while"))	index = i;
 						}
 
 						alternativa = input.next();	
+						// Chamada do gateway para validação de respostas
 						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
 					case 6:	
@@ -654,7 +656,7 @@ public class G6 {
 				break;
 			case 10: 
 				System.out.println("\t Mãe Natureza: " + name + " você é um herói, graças a você todos os seres deste planeta poderão viver... Parabéns, você é a pessoa mais inteligente que já vi.");
-				System.out.println("\t Mãe Natureza: Ahhh... Mil perdões esqueci de te tirar deste ambiente virtual... Até a próxima herói");
+				System.out.println("\t Mãe Natureza: Ahhh... Mil perdões esqueci de te tirar deste ambiente virtual... Até a próxima.");
 				principal.coteTime(8000);
 				principal.clearScreen();
 				
@@ -811,7 +813,7 @@ public class G6 {
 	 * 
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		try {
 			System.out.println("\tAWTreech\n");
 			System.out.println("1 - Jogar");
