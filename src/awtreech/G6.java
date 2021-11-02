@@ -181,7 +181,7 @@ public class G6 {
 			switch (nQuestion) {
 				case 1:
 					// Chamar push da história positiva
-					qResponses.add("101010");
+					qResponses.add("101010");// resposta correta
 					qResponses.add("101011");
 					qResponses.add("111010");
 					qResponses.add("101110");
@@ -196,21 +196,119 @@ public class G6 {
 					System.out.print("Escolha uma alternativa: ");
 
 					alternativa = input.next();	
-					principal.gateway(alternativa, extraLife, qQuestions[0], 2, nQuestion, false); // Chamando o gateway
+					principal.gateway(alternativa, extraLife, qQuestions[0],level , nQuestion, false); // Chamando o gateway
 					break;
 
-				case 2:			
-					break;
-				case 3:			
-					break;
-				case 4:				
-					break;
-				case 5:			
-					break;
-				case 6:				
-					break;
-				case 7:
+				case 2:		
+					qResponses.add("A variavel (int)");
+					qResponses.add("A variavel (float)");
+					qResponses.add("A variavel (double)");
+					qResponses.add("A variavel (String)");// resposta correta
+					qResponses.add("A variavel (boolean)");
+	
+					System.out.println("Qual a variável utilizada para representar caracteres de nomes: ");
+					System.out.println(qQuestions[0] + ") " + qResponses.get(0));
+					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+					System.out.println(qQuestions[3] + ") " + qResponses.get(3));// resposta correta
+					System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+					System.out.print("Escolha uma alternativa: ");
 
+					alternativa = input.next();
+					principal.gateway(alternativa, extraLife, qQuestions[3], level, nQuestion, false);
+					break;
+
+				case 3:		
+					qResponses.add("A variavel (int)");// resposta correta
+					qResponses.add("A variavel (float)");
+					qResponses.add("A variavel (double)");
+					qResponses.add("A variavel (String)");
+					qResponses.add("A variavel (boolean)");
+
+					System.out.println("Qual a variável utilizada para representar numeros inteiros: ");
+					System.out.println(qQuestions[0] + ") " + qResponses.get(0));// resposta correta
+					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+					System.out.println(qQuestions[3] + ") " + qResponses.get(3));
+					System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+					System.out.print("Escolha uma alternativa: ");	
+
+					alternativa = input.next();
+					principal.gateway(alternativa, extraLife, qQuestions[0], level, nQuestion, false);
+						break;
+				case 4:
+					qResponses.add("O simbolo (>)");
+					qResponses.add("O simbolo (<)");
+					qResponses.add("O simbolo (>=)");// resposta correta
+					qResponses.add("O simbolo (<=)");
+					qResponses.add("O simbolo (<>)");
+
+					System.out.println("Qual simbolo e representeado por maior igual na programação: ");
+					System.out.println(qQuestions[0] + ") " + qResponses.get(0));
+					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+					System.out.println(qQuestions[2] + ") " + qResponses.get(2));// resposta correta
+					System.out.println(qQuestions[3] + ") " + qResponses.get(3));
+					System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+					System.out.print("Escolha uma alternativa: ");
+
+					alternativa = input.next();
+					principal.gateway(alternativa, extraLife, qQuestions[2], level, nQuestion, false);
+					
+					break;
+				case 5:
+					qResponses.add("switch/case");
+					qResponses.add("for");// resposta correta
+					qResponses.add("do/while");
+					qResponses.add("break");
+					qResponses.add("string");
+
+					System.out.println("Qual a variável utilizada em uma estrutura de repetição quando se sabe o \n numero de repetições em que deve ser executada: ");
+					System.out.println(qQuestions[0] + ") " + qResponses.get(0));
+					System.out.println(qQuestions[1] + ") " + qResponses.get(1));// resposta correta
+					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+					System.out.println(qQuestions[3] + ") " + qResponses.get(3));
+					System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+
+					alternativa = input.next();
+					principal.gateway(alternativa, extraLife, qQuestions[1], level, nQuestion, false);
+					
+					break;
+				case 6:		
+					qResponses.add("A variavel (while)");
+					qResponses.add("A variavel (for)");
+					qResponses.add("A variavel (double)");
+					qResponses.add("A variavel (String)");
+					qResponses.add("A variavel (if/else)");// resposta correta
+
+					System.out.println("Qual a variavel utilizada para determinar se uma condicao é verdadeira ou falsa: ");
+					System.out.println(qQuestions[0] + ") " + qResponses.get(0));
+					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+					System.out.println(qQuestions[3] + ") " + qResponses.get(3));
+					System.out.println(qQuestions[4] + ") " + qResponses.get(4));// resposta correta
+					
+					alternativa = input.next();
+					principal.gateway(alternativa, extraLife, qQuestions[4], level, nQuestion, false);
+						
+					break;
+				case 7:	
+					qResponses.add("if(x<20)");
+					qResponses.add("else(x>20)");
+					qResponses.add("x é maior do que 20");
+					qResponses.add("x é menor do que 20");// resposta correta
+					qResponses.add("System.out.println(“x é menor do que 20”);");
+
+					System.out.println("No código apresentado abaixo, qual a saida verdadeira: " +
+					"\n int x = 10;\n if(x < 20){\nSystem.out.println(“x é menor do que 20”);\n }else{\nSystem.out.println(“x é maior do que 20”);\n}\n}\n}");
+					System.out.println(qQuestions[0] + ") " + qResponses.get(0));
+					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+					System.out.println(qQuestions[3] + ") " + qResponses.get(3));// resposta correta
+					System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+
+					alternativa = input.next();
+					principal.gateway(alternativa, extraLife, qQuestions[3], level, nQuestion, false);
+						
 					break;
 			}
 		}
