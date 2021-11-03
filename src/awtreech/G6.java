@@ -36,11 +36,11 @@ public class G6 {
 	}
 
 	/**
-	 * Limpa tela
+	 * Limpa todos caracteres na tela
 	 */
 	public void clearScreen(){
 		char esc = 27;
-		String clear = esc + "[2J"; //codigo ansi para limpar a tela
+		String clear = esc + "[2J"; // Código ansi para limpar a tela
 		System.out.println(clear);
 	}
 
@@ -62,12 +62,13 @@ public class G6 {
 					principal.medium(1, this.push, 2);
 					break;
 				case 3: // Difícil
-					System.out.println("Nivel difícil selecionado, Voce tem 2 vidas extras");
+					System.out.println("Nivel difícil selecionado, Voce tem 1 vidas extras");
 					principal.hard(1, this.push, 1);
 					break;
 				default:
 					System.out.println("Nivel Invalido");
-					principal.level(3);
+					principal.coteTime(3000);
+					principal.menu(5); // Caso o nivel digitado não esteja condicionando, é redirecionado para o menu
 					break;
 			}
 		} catch (Exception e) {
@@ -177,18 +178,24 @@ public class G6 {
 	 * @param noPush : Verifica se faz push da função de história negativa
 	 * @param extraLife : Vidas extras do player
 	 */
-	public void easy(int nQuestion, boolean noPush, int extraLife) {
+	public void easy(int nQuestion, boolean noPush, int extraLife) throws Exception {
 		
+		// Limpando a tela
+		principal.clearScreen();
 		String alternativa;	
 
 		if (noPush) {
-			// Saída - Histórias negativas
+			principal.stories(8, false);
+			System.out.println("GAME OVER!");
+			principal.exit();
 		} else {
+			System.out.println("Você tem "+ extraLife + " restante(s)");
 			// Saída histórias positivas
 			switch (nQuestion) {
 				case 1:
+					System.out.println("\n Desafio: " + nQuestion);
 					// Chamar push da história positiva
-					qResponses.add("101010");
+					qResponses.add("101010");// resposta correta
 					qResponses.add("101011");
 					qResponses.add("111010");
 					qResponses.add("101110");
@@ -203,21 +210,128 @@ public class G6 {
 					System.out.print("Escolha uma alternativa: ");
 
 					alternativa = input.next();	
-					principal.gateway(alternativa, extraLife, qQuestions[0], 2, nQuestion, false); // Chamando o gateway
+					principal.gateway(alternativa, extraLife, qQuestions[0], level , nQuestion, false); // Chamando o gateway
 					break;
 
-				case 2:			
-					break;
-				case 3:			
-					break;
-				case 4:				
-					break;
-				case 5:			
-					break;
-				case 6:				
-					break;
-				case 7:
+				case 2:		
+					System.out.println("\n Desafio: " + nQuestion);
+					qResponses.add("A variavel (int)");
+					qResponses.add("A variavel (float)");
+					qResponses.add("A variavel (double)");
+					qResponses.add("A variavel (String)");// resposta correta
+					qResponses.add("A variavel (boolean)");
+	
+					System.out.println("Qual a variável utilizada para representar caracteres de nomes: ");
+					System.out.println(qQuestions[0] + ") " + qResponses.get(0));
+					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+					System.out.println(qQuestions[3] + ") " + qResponses.get(3));// resposta correta
+					System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+					System.out.print("Escolha uma alternativa: ");
 
+					alternativa = input.next();
+					principal.gateway(alternativa, extraLife, qQuestions[3], level, nQuestion, false);
+					break;
+
+				case 3:	
+					System.out.println("\n Desafio: " + nQuestion);	
+					qResponses.add("A variavel (int)");// resposta correta
+					qResponses.add("A variavel (float)");
+					qResponses.add("A variavel (double)");
+					qResponses.add("A variavel (String)");
+					qResponses.add("A variavel (boolean)");
+
+					System.out.println("Qual a variável utilizada para representar numeros inteiros: ");
+					System.out.println(qQuestions[0] + ") " + qResponses.get(0));// resposta correta
+					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+					System.out.println(qQuestions[3] + ") " + qResponses.get(3));
+					System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+					System.out.print("Escolha uma alternativa: ");	
+
+					alternativa = input.next();
+					principal.gateway(alternativa, extraLife, qQuestions[0], level, nQuestion, false);
+						break;
+				case 4:
+					System.out.println("\n Desafio: " + nQuestion);
+					qResponses.add("O simbolo (>)");
+					qResponses.add("O simbolo (<)");
+					qResponses.add("O simbolo (>=)");// resposta correta
+					qResponses.add("O simbolo (<=)");
+					qResponses.add("O simbolo (<>)");
+
+					System.out.println("Qual simbolo e representeado por maior igual na programação: ");
+					System.out.println(qQuestions[0] + ") " + qResponses.get(0));
+					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+					System.out.println(qQuestions[2] + ") " + qResponses.get(2));// resposta correta
+					System.out.println(qQuestions[3] + ") " + qResponses.get(3));
+					System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+					System.out.print("Escolha uma alternativa: ");
+
+					alternativa = input.next();
+					principal.gateway(alternativa, extraLife, qQuestions[2], level, nQuestion, false);
+					
+					break;
+				case 5:
+					System.out.println("\n Desafio: " + nQuestion);
+					qResponses.add("switch/case");
+					qResponses.add("for");// resposta correta
+					qResponses.add("do/while");
+					qResponses.add("break");
+					qResponses.add("string");
+
+					System.out.println("Qual a variável utilizada em uma estrutura de repetição quando se sabe o \n numero de repetições em que deve ser executada: ");
+					System.out.println(qQuestions[0] + ") " + qResponses.get(0));
+					System.out.println(qQuestions[1] + ") " + qResponses.get(1));// resposta correta
+					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+					System.out.println(qQuestions[3] + ") " + qResponses.get(3));
+					System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+					System.out.print("Escolha uma alternativa: ");
+
+					alternativa = input.next();
+					principal.gateway(alternativa, extraLife, qQuestions[1], level, nQuestion, false);
+					
+					break;
+				case 6:		
+					System.out.println("\n Desafio: " + nQuestion);
+					qResponses.add("A variavel (while)");
+					qResponses.add("A variavel (for)");
+					qResponses.add("A variavel (double)");
+					qResponses.add("A variavel (String)");
+					qResponses.add("A variavel (if/else)");// resposta correta
+
+					System.out.println("Qual a variavel utilizada para determinar se uma condicao é verdadeira ou falsa: ");
+					System.out.println(qQuestions[0] + ") " + qResponses.get(0));
+					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+					System.out.println(qQuestions[3] + ") " + qResponses.get(3));
+					System.out.println(qQuestions[4] + ") " + qResponses.get(4));// resposta correta
+					System.out.print("Escolha uma alternativa: ");
+					
+					alternativa = input.next();
+					principal.gateway(alternativa, extraLife, qQuestions[4], level, nQuestion, false);
+						
+					break;
+				case 7:	
+					System.out.println("\n Desafio: " + nQuestion);
+					qResponses.add("if(x<20)");
+					qResponses.add("else(x>20)");
+					qResponses.add("x é maior do que 20");
+					qResponses.add("x é menor do que 20");// resposta correta
+					qResponses.add("System.out.println(“x é menor do que 20”);");
+
+					System.out.println("No código apresentado abaixo, qual a saida verdadeira: " +
+					"\n int x = 10;\n if(x < 20){\nSystem.out.println(“x é menor do que 20”);\n }else{\nSystem.out.println(“x é maior do que 20”);\n}\n}\n}");
+					System.out.println(qQuestions[0] + ") " + qResponses.get(0));
+					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
+					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
+					System.out.println(qQuestions[3] + ") " + qResponses.get(3));// resposta correta
+					System.out.println(qQuestions[4] + ") " + qResponses.get(4));
+					System.out.print("Escolha uma alternativa: ");
+					
+					alternativa = input.next();
+					principal.gateway(alternativa, extraLife, qQuestions[3], level, nQuestion, false);
+						
 					break;
 			}
 		}
@@ -370,18 +484,17 @@ public class G6 {
 						System.out.println("\n Desafio: " + nQuestion);		
 						qResponses.clear();
 						// Adicionando possíveis respostas		
-						qResponses.add("do while"); // resposta correta
-						qResponses.add("while");
-						qResponses.add("if");
-						qResponses.add("foreach");
-						qResponses.add("O que melhor se adequar a sua regra de negócio.");
+						qResponses.add("Scanner input = new Scanner(System.in); \n int num =  input.nextInt();\n int count = 0; \n while (num >= count ){\n         if (num % 5 == 0){ \n              System.out.println(num);\n          }\n          count++\n }"); // resposta correta
+						qResponses.add("int num =  input.nextInt();\n int count = 0; \n while (num >= count ){\n         if (num % 5 == 0){ \n              System.out.println(num);\n              count++\n          }\n }");
+						qResponses.add("Scanner input = new Scanner(System.in) \n int num =  input.nextInt();\n int count = 0; \n do while (num >= count )\n         if (num % 5 == 0){ \n              System.out.println(num);\n              count++\n          }\n }");
+						qResponses.add("Scanner input = new Scanner(System.in); \n int num =  input.nextInt();\n int count = 0; \n while (num >= count ){\n         for (num % 5 == 0){ \n              System.out.println(num);\n                  }\n }");
+						qResponses.add("INT input = new Scanner(System.in); \n int num =  input.nextInt();\n int count = num; \n while (num >= count ){\n         if (num % 5 == 0){ \n              System.out.println(count);\n              count++\n          }\n }");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\nFoi decidido que uma execução de código deve entrar em um laço de repetição.");
-						System.out.println("Entretanto, precisamos executar o código dentro deste laço pela primeira vez, posteriormente validar se o código deverá ficar em loop.");
-						System.out.println("\n Logicamente pensando nos modelos de execuçõs dos laços, qual o melhor laço a se utilizar nesta situação? \n");
-						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
+						System.out.println("\n Preciso de um programa que seja capaz de ler um valor por valor, e imprimir apenas os números múltiplos de 5.\n");
+						System.out.println("Analise as alternativas, e escolha aquela que melhor se enquadra para esta solução: \n");
+						System.out.println(qQuestions[0] + ") " + qResponses.get(0));
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
 						System.out.println(qQuestions[3] + ") " + qResponses.get(3));
@@ -389,7 +502,9 @@ public class G6 {
 						System.out.print("Escolha uma alternativa: ");
 						// Verifica qual a resposta correta e seta o index da alternativa certa
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("do while"))	index = i;
+							if (qResponses.get(i).equals("Scanner input = new Scanner(System.in); \n int num =  input.nextInt();\n int count = 0; \n while (num >= count ){\n         if (num % 5 == 0){ \n              System.out.println(num);\n          }\n          count++\n }"))	{
+								index = i;
+							}	
 						}
 
 						alternativa = input.next();	
@@ -400,46 +515,52 @@ public class G6 {
 						System.out.println("\n Desafio: " + nQuestion);			
 						qResponses.clear();
 								
-						qResponses.add("do while"); // resposta correta
-						qResponses.add("while");
-						qResponses.add("if");
-						qResponses.add("foreach");
-						qResponses.add("O que melhor se adequar a sua regra de negócio.");
+						qResponses.add("Não, mas a estrutura de decisão se torna inútil, pois verifica um número inicializado pelo sistema, sendo que logo após tem leitura de um valor digitado pelo usuário"); // resposta correta
+						qResponses.add("Sim, o if não pode verificar um valor inteiro igual a zero.");
+						qResponses.add("Não, código em perfeito estado.");
+						qResponses.add("Sim, Scanner inicializado incorretamente.");
+						qResponses.add("Sim, na linguagem JAVA não é necessário ponto e vírgula ao final de um comando.");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\nFoi decidido que uma execução de código deve entrar em um laço de repetição.");
-						System.out.println("Entretanto, precisamos executar o código dentro deste laço pela primeira vez, posteriormente validar se o código deverá ficar em loop.");
-						System.out.println("\n Logicamente pensando nos modelos de execuçõs dos laços, qual o melhor laço a se utilizar nesta situação? \n");
+						System.out.println("\n Preciso da sua ajuda para melhorar / consertar este código: \n");
+						System.out.println("\n int num = 0; \n Scanner input = new Scanner(System.in); \n if (num % 2 == 0) { \n    System.out.print(num);\n}\n System.out.print('Digite um número'); \n num = input.nextInt();\n");
+						System.out.println("\n Você enxerga algum problema neste código? ");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
 						System.out.println(qQuestions[3] + ") " + qResponses.get(3));
 						System.out.println(qQuestions[4] + ") " + qResponses.get(4));
 						System.out.print("Escolha uma alternativa: ");
-
+						// Verifica qual a resposta correta e seta o index da alternativa certa
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("do while"))	index = i;
+							if (qResponses.get(i).equals("Não, mas a estrutura de decisão se torna inútil, pois verifica um número inicializado pelo sistema, sendo que logo após tem leitura de um valor digitado pelo usuário")){
+								index = i;
+							}
 						}
 
 						alternativa = input.next();	
 						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
+
 					case 7:
 						System.out.println("\n Desafio: " + nQuestion);
 						qResponses.clear();
 								
-						qResponses.add("do while"); // resposta correta
-						qResponses.add("while");
-						qResponses.add("if");
-						qResponses.add("foreach");
-						qResponses.add("O que melhor se adequar a sua regra de negócio.");
+						qResponses.add("Ao fechar as chaves no else, está sendo fechado com parênteses"); // resposta correta
+						qResponses.add("A construção da lógica do código está incorreta");
+						qResponses.add("O for não pode ter uma uma variável double incializado nele");
+						qResponses.add("A variável n está recebendo valores float ao invés de double");
+						qResponses.add("Não há erros!");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\nFoi decidido que uma execução de código deve entrar em um laço de repetição.");
-						System.out.println("Entretanto, precisamos executar o código dentro deste laço pela primeira vez, posteriormente validar se o código deverá ficar em loop.");
-						System.out.println("\n Logicamente pensando nos modelos de execuçõs dos laços, qual o melhor laço a se utilizar nesta situação? \n");
+						System.out.println("\nQual o problema deste código? \n");
+						System.out.println("\n Scanner input = new Scanner(System.in);\n System.out.print('Digite um número natural: '); \n double n = input.nextFloat(); \n");
+						System.out.println("\n double s1 = 1 / n; \n double s2 = n / 1;");
+						System.out.println("\n if (n < 0) System.out.println('Número digitado não é natural'); \n  {\n       System.out.println('Número digitado não é natural');");
+						System.out.println("\n } else {\n    for (double i = 2; i<n; i++) {\n      s1 = i / n - i; \n      s2 = n - i / i;   \n    } \n)\n");
+						System.out.println("\n System.out.println('S = '+ (s1 + s2));\n ");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -448,7 +569,7 @@ public class G6 {
 						System.out.print("Escolha uma alternativa: ");
 
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("do while"))	index = i;
+							if (qResponses.get(i).equals("Ao fechar as chaves no else, está sendo fechado com parênteses"))	index = i;
 						}
 
 						alternativa = input.next();	
@@ -462,11 +583,11 @@ public class G6 {
 	}
 
 	/**
-	 * Questões nível Médio
+	 * QuestÃµes nível difícil
 	 * 
 	 *  Descrição parâmetros:
-	 * @param nQuestion : número da questão atual
-	 * @param noPush : Verifica se faz push da função de história negativa
+	 * @param nQuestion : Número da questão atual
+	 * @param noPush : Verifica se faz push da funÃ§Ã£o de história negativa
 	 * @param extraLife : Vidas extras do player
 	 */
 	public void hard(int nQuestion, boolean noPush, int extraLife) {
@@ -482,23 +603,23 @@ public class G6 {
 				principal.exit();
 			} else {
 				System.out.println("Você tem "+ extraLife + " restante(s)");
-				// Saída histórias positivas
+				// SaÃ­da histÃ³rias positivas
 				switch (nQuestion) {
 					case 1:
 						System.out.println("\n Desafio: " + nQuestion);			
 						qResponses.clear();
 								
-						qResponses.add("Quando se sabe o ponto inicial e final, sabendo quantas vezes o c�digo vai ser rodado."); // resposta correta
-						qResponses.add("Para executar o c�digo ao m�nimo uma vez.");
-						qResponses.add("Para verificar a condi��o antes de executar o c�digo.");
-						qResponses.add("Quando � necess�rio executar outra estrutura de repeti��o dentro da estrutura.");
-						qResponses.add("Quando � preciso tratar apenas de uma vari�vel.");
+						qResponses.add("Quando se sabe o ponto inicial e final, sabendo quantas vezes o código vai ser rodado."); // resposta correta
+						qResponses.add("Para executar o código ao mínimo uma vez.");
+						qResponses.add("Para verificar a condição antes de executar o código.");
+						qResponses.add("Quando é necessário executar outra estrutura de repetição dentro da estrutura.");
+						qResponses.add("Quando é preciso tratar apenas de uma variável.");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n As estruturas de repeti��o muitas vezes podem ser trocadas por outras sem afetar o funcionamento do programa, ");
-						System.out.println("tamb�m cabe ao programador ou a equipe decidir entre essas estruturas devido ao seu funcionamento ser muito parecido, ");
-						System.out.println("em quais momentos � melhor utilizar a estrutura for ao inv�s de outras? \n");
+						System.out.println("\n As estruturas de repetição muitas vezes podem ser trocadas por outras sem afetar o funcionamento do programa, ");
+						System.out.println("também cabe ao programador ou a equipe decidir entre essas estruturas devido ao seu funcionamento ser muito parecido, ");
+						System.out.println("em quais momentos é melhor utilizar a estrutura for ao invés de outras? \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -507,7 +628,7 @@ public class G6 {
 						System.out.print("Escolha uma alternativa: ");
 
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("Quando se sabe o ponto inicial e final, sabendo quantas vezes o c�digo vai ser rodado."))	index = i;
+							if (qResponses.get(i).equals("Quando se sabe o ponto inicial e final, sabendo quantas vezes o código vai ser rodado."))	index = i;
 						}
 
 						alternativa = input.next();	
@@ -518,15 +639,15 @@ public class G6 {
 						System.out.println("\n Desafio: " + nQuestion);			
 						qResponses.clear();
 								
-						qResponses.add("Fechar a estrutura de repeti��o"); // resposta correta
+						qResponses.add("Fechar a estrutura de repetição"); // resposta correta
 						qResponses.add("Sair de uma condicional (Ex: if)");
-						qResponses.add("Cancelar o funcionamento em apenas um momento, continuando logo ap�s");
-						qResponses.add("Cancelar toda a opera��o, at� aquela que j� foi feita anteriormente");
-						qResponses.add("A fun��o aparece somente na presen�a da estrutura Switch");
+						qResponses.add("Cancelar o funcionamento em apenas um momento, continuando logo após");
+						qResponses.add("Cancelar toda a operação, até aquela que já foi feita anteriormente");
+						qResponses.add("A função aparece somente na presença da estrutura Switch");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n Qual o funcionamento da fun��o break dentro dos la�os de repeti��o? \n");
+						System.out.println("\n Qual o funcionamento da função break dentro dos laços de repetição? \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -535,7 +656,7 @@ public class G6 {
 						System.out.print("Escolha uma alternativa: ");
 
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("Fechar a estrutura de repeti��o"))	index = i;
+							if (qResponses.get(i).equals("Fechar a estrutura de repetição"))	index = i;
 						}
 
 						alternativa = input.next();	
@@ -545,15 +666,15 @@ public class G6 {
 						System.out.println("\n Desafio: " + nQuestion);			
 						qResponses.clear();
 								
-						qResponses.add("As fun��es static executam uma fun��o sem depend�ncia do conte�do de um objeto"); // resposta correta
-						qResponses.add("Fun��es static s�o apenas usadas para retornar valores");
-						qResponses.add("Apenas o main � uma fun��o static");
-						qResponses.add("Fun��es static executam uma fun��o apenas na depend�ncia do conte�do de um objeto");
-						qResponses.add("As duas fun��es apresentam as mesmas caracter�sticas");
+						qResponses.add("As funções static executam uma função sem dependência do conteúdo de um objeto"); // resposta correta
+						qResponses.add("Funções static são apenas usadas para retornar valores");
+						qResponses.add("Apenas o main é uma função static");
+						qResponses.add("Funções static executam uma função apenas na dependência do conteúdo de um objeto");
+						qResponses.add("As duas funções apresentam as mesmas características");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n Qual a diferen�a entre fun��es static e n�o static? \n");
+						System.out.println("\n Qual a diferença entre funções static e não static? \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -562,7 +683,7 @@ public class G6 {
 						System.out.print("Escolha uma alternativa: ");
 
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("As fun��es static executam uma fun��o sem depend�ncia do conte�do de um objeto"))	index = i;
+							if (qResponses.get(i).equals("As funções static executam uma função sem dependência do conteúdo de um objeto"))	index = i;
 						}
 
 						alternativa = input.next();	
@@ -572,15 +693,15 @@ public class G6 {
 						System.out.println("\n Desafio: " + nQuestion);			
 						qResponses.clear();
 								
-						qResponses.add("Para aproveitar o mesmo m�todo novamente no c�digo"); // resposta correta
-						qResponses.add("Pois alguns procedimentos funcionam apenas se colocados sozinhos em fun��es");
-						qResponses.add("Pois a fun��o main funciona apenas utilizando outras fun��es");
-						qResponses.add("Para deixar o c�digo mais limpo para o usu�rio");
-						qResponses.add("Fun��es al�m do main s�o exclusivas do Java, pois o programa exige que tudo esteja separado");
+						qResponses.add("Para aproveitar o mesmo método novamente no código"); // resposta correta
+						qResponses.add("Pois alguns procedimentos funcionam apenas se colocados sozinhos em funções");
+						qResponses.add("Pois a função main funciona apenas utilizando outras funções");
+						qResponses.add("Para deixar o código mais limpo para o usuário");
+						qResponses.add("Funções além do main são exclusivas do Java, pois o programa exige que tudo esteja separado");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n Por qual motivo se torna v�lido utilizar fun��es em c�digos \n");
+						System.out.println("\n Por qual motivo se torna válido utilizar funções em códigos \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -589,7 +710,7 @@ public class G6 {
 						System.out.print("Escolha uma alternativa: ");
 
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("Para aproveitar o mesmo m�todo novamente no c�digo"))	index = i;
+							if (qResponses.get(i).equals("Para aproveitar o mesmo método novamente no código"))	index = i;
 						}
 
 						alternativa = input.next();	
@@ -599,15 +720,15 @@ public class G6 {
 						System.out.println("\n Desafio: " + nQuestion);			
 						qResponses.clear();
 								
-						qResponses.add("Fun��es static s�o chamadas utilizando o nome da classe e o nome da fun��o"); // resposta correta
-						qResponses.add("N�o existe diferen�a");
-						qResponses.add("Fun��es n�o static s�o chamadas utilizando o nome da classe e o nome da fun��o");
-						qResponses.add("N�o existe diferen�a entre elas, apenas onde s�o chamadas");
-						qResponses.add("Fun��es static s�o chamadas utilizando somente o nome da fun��o");
+						qResponses.add("Funções static são chamadas utilizando o nome da classe e o nome da função"); // resposta correta
+						qResponses.add("Não existe diferença");
+						qResponses.add("Funções não static são chamadas utilizando o nome da classe e o nome da função");
+						qResponses.add("Não existe diferença entre elas, apenas onde são chamadas");
+						qResponses.add("Funções static são chamadas utilizando somente o nome da função");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n Qual a diferen�a em chamar uma fun��o static e uma fun��o n�o static? \n");
+						System.out.println("\n Qual a diferença em chamar uma função static e uma função não static? \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -616,7 +737,7 @@ public class G6 {
 						System.out.print("Escolha uma alternativa: ");
 
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("Fun��es static s�o chamadas utilizando o nome da classe e o nome da fun��o"))	index = i;
+							if (qResponses.get(i).equals("Funções static são chamadas utilizando o nome da classe e o nome da função"))	index = i;
 						}
 
 						alternativa = input.next();	
@@ -628,13 +749,13 @@ public class G6 {
 								
 						qResponses.add("Para sinalizar que pode ser chamado em qualquer lugar"); // resposta correta
 						qResponses.add("Para sinalizar que pode ser chamado em qualquer lugar dentro das classes que usam a principal como base");
-						qResponses.add("Para sinalizar a fun��o main");
-						qResponses.add("A palavra n�o possui nenhuma fun��o");
-						qResponses.add("Apenas classes do mesmo pacote podem chamar o m�todo");
+						qResponses.add("Para sinalizar a função main");
+						qResponses.add("A palavra não possui nenhuma função");
+						qResponses.add("Apenas classes do mesmo pacote podem chamar o método");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n Qual a fun��o da palavra public antes do m�todo? \n");
+						System.out.println("\n Qual a função da palavra public antes do método? \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -661,7 +782,7 @@ public class G6 {
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n Qual o valor de a ao final do c�digo");
+						System.out.println("\n Qual o valor de a ao final do código");
 						System.out.println("int a = 0, b = 0, c;");
 						System.out.println("\n while (b<=3) { \n 	for (c = b; c <=3; c++) { \n a = a + 1 } \n b++ } \n System.out.println(a); \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
@@ -865,7 +986,7 @@ public class G6 {
 	 * Descrição do(s) parâmetro(s):
 	 */
 	public void instructions() throws Exception {
-		System.out.println("\t \n                                    Instruções - AWTreech \n");
+		System.out.println("\t \n                                   Instruções - AWTreech \n");
 		System.out.println("\t - O jogo só começa quando digitar o comando '1';");
 		System.out.println("\t - Você poderá sair a qualquer momento, digitando 'sair';");
 		System.out.println("\t - Assim que escolher a dificuldade do jogo, você terá vidas extras, se adaptando com dificuldade:");
@@ -897,12 +1018,12 @@ public class G6 {
 					// Dando introdução ao jogo
 					principal.stories(11, true);
 					// Armazenando nome em variável global
-					System.out.print("Digite o nome do seu personagem: ");
+					System.out.print("\t Digite o nome do seu personagem: ");
 					name = input.next();
 					principal.stories(12, true);
 					// Definindo level do jogo
 					principal.stories(13, true);
-					System.out.print("Digite, de 1 a 3 qual seu nível em programação?");
+					System.out.print("\t Digite, de 1 a 3 qual seu nível em programação? ");
 					level = input.nextInt();
 					principal.level(level);
 					break;
@@ -913,6 +1034,13 @@ public class G6 {
 					principal.instructions();
 				case 4: // Sair
 					principal.exit();
+					break;
+				case 5: // Caso o usuário digite algum valor não aceitável no level
+					principal.clearScreen();
+					System.out.println("\t Digite o nível desejável, só que dessa vez de 1 até 3! \n");
+					System.out.print("\t Digite, de 1 a 3 qual seu nível em programação? ");
+					level = input.nextInt();
+					principal.level(level);
 					break;
 			
 				default: // Caso seja passado uma opção invalída, retorna para o menu
