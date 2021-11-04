@@ -6,8 +6,8 @@ Este é um sistema referente ao primeiro projeto integrador para composição de
 ## Desafio
 Foi proposto pelo Professor Eduardo Takeo, que fizessemos um jogo textual focado em uma das matérias do 1° Semestre do curso, com o objetivo de ajudar outros alunos a treinar suas habilidades, utilizando o design thinking para apoio e base para construção do projeto. Também foi proposto que fizessemos esse projeto em uma única classe .JAVA.
 
-## Critérios de avaliação:
-### Especicamente na nota do código-fonte será considerado: 
+## **Critérios de avaliação:**
+### **Especicamente na nota do código-fonte será considerado:**
 - Utilização de apenas uma classe (arquivo.java) com o código-fonte do jogo (1 ponto);
 - Utilização da estrutura if (1 ponto);
 - Utilização de switch (1 ponto);
