@@ -16,6 +16,6 @@ Foi proposto pelo Professor Eduardo Takeo, que fizessemos um jogo textual focado
 - Utilização de métodos (funções/procedimentos) (1 ponto);
 - Implementação dos métodos para Instruções, Jogar, Créditos e Sair chamados no menu (1 ponto);
 - Implementação de aleatoriedade (ou randomicidade) no jogo (1 ponto); 
-- Acréscimo de comentários explicativos no código (1 ponto), e apresentação de no mínimo 5 e no máximo 10 desaos (1 ponto);
-- O professor também poderá atribuir 0 (zero), 0.25, 0.50 ou 0.75 se for vericado que o item avaliado
+- Acréscimo de comentários explicativos no código (1 ponto), e apresentação de no mínimo 5 e no máximo 10 desafios (1 ponto);
+- O professor também poderá atribuir 0 (zero), 0.25, 0.50 ou 0.75 se for vericado que o item avaliado
 não foi atendido de forma satisfatória.
