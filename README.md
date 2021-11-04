@@ -1,7 +1,7 @@
 # AWTreech
  
 ## O que é?
-Este é um sistema referente ao primeiro projeto integrador para composição de nota na faculdade de Análise e desenvolvimento de sistemas no SENAC. Este projeto consiste em ajudar os alunos que sentem dificuldade na matéria de algoritimos, possam aprender sobre o tema por meio de um jogo textual.
+Este é um sistema referente ao primeiro projeto integrador para composição de nota na faculdade de Análise e desenvolvimento de sistemas no [SENAC](https://www.sp.senac.br/). Este projeto consiste em ajudar os alunos que sentem dificuldade na matéria de algoritimos, possam aprender sobre o tema por meio de um jogo textual.
 
 ## Desafio
 Foi proposto pelo Professor Eduardo Takeo, que fizessemos um jogo textual focado em uma das matérias do 1° Semestre do curso, com o objetivo de ajudar outros alunos a treinar suas habilidades, utilizando o design thinking para apoio e base para construção do projeto. Também foi proposto que fizessemos esse projeto em uma única classe .JAVA.
