@@ -2,15 +2,19 @@
  * 
  */
 package awtreech;
-
-import awtreech.G6;
-
 /**
  * @author Danilo
  *
  */
 public class test {
 	static G6 principal = new G6();
+
+	/**
+	 * Método de teste
+	 */
+	public static void easyTest() {
+		
+	}
 	
 	/**
 	 * @param args
