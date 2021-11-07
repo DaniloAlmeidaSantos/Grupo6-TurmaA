@@ -10,13 +10,12 @@ import awtreech.G6;
  *
  */
 public class test {
-
+	static G6 principal = new G6();
+	
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		G6 principal = new G6();
-		
+	public static void main(String[] args) {		
 		try {
 			principal.credits();
 		} catch (Exception e) {
