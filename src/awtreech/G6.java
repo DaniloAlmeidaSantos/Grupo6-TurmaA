@@ -25,20 +25,20 @@ public class G6 {
 	private final String[] qQuestions = {"a", "b", "c", "d", "e"}; // Alternativas disponíveis no jogo
 	private ArrayList<String> qResponses = new ArrayList<>();
 	private boolean bonus = false; // Verifica se foi realizado push para bonusQuestion
-	static String name; //name do jogador
-	static int level; // easy = 1 , medium = 2 , hard = 3
+	private String name; //name do jogador
+	private int level; // easy = 1 , medium = 2 , hard = 3
 
 	/**
 	 * Gateway para sair do jogo
 	 */
-	public void exit() {
+	private void exit() {
 		System.exit(0);
 	}
 
 	/**
 	 * Limpa todos caracteres na tela
 	 */
-	public void clearScreen(){
+	private void clearScreen(){
 		char esc = 27;
 		String clear = esc + "[2J"; // Código ansi para limpar a tela
 		System.out.println(clear);
@@ -50,29 +50,31 @@ public class G6 {
      * Descrição dos parâmetros:
      * @param selectLevel : definir nível escolhido pelo usuário
      */
-    public void level(int selectLevel) {
+    public boolean level(int selectLevel) {
 		try {
 			switch (selectLevel) {
 				case 1 :  // Fácil
 					System.out.println("Nivel fácil selecionado, Voce tem 3 vidas extras");
 					principal.easy(1, this.push, 3);
-					break;
+					return true;
 				case 2: // Médio
 					System.out.println("Nivel médio selecionado, Voce tem 2 vidas extras");
 					principal.medium(1, this.push, 2);
-					break;
+					return true;
 				case 3: // Difícil
 					System.out.println("Nivel difícil selecionado, Voce tem 1 vidas extras");
 					principal.hard(1, this.push, 1);
-					break;
+					return true;
 				default:
 					System.out.println("Nivel Invalido");
 					principal.coteTime(3000);
 					principal.menu(5); // Caso o nivel digitado não esteja condicionando, é redirecionado para o menu
-					break;
+					return false;
 			}
 		} catch (Exception e) {
 			System.err.println(e);
+			e.printStackTrace();
+			return false;
 		}
     }
 
@@ -87,16 +89,17 @@ public class G6 {
 	 * @param nQuestion : Número da questão
 	 * @param bonusQ : Verrifica se tem questão bônus pendente
 	 */
-	public void gateway(String data, int eLife,  String cQuestion, int level, int nQuestion, boolean bonusQ) {
+	public boolean gateway(String data, int eLife,  String cQuestion, int level, int nQuestion, boolean bonusQ) {
 		try {
 			// Caso o jogador decida sair do jogo
 			if (data.equalsIgnoreCase("sair")) principal.exit();
 
-			if (data.toLowerCase().equals(cQuestion)) {
+			if (data.toLowerCase().equals(cQuestion) && nQuestion <= 7) {
 				if (nQuestion == 7){ // Se o jogador acertou a questão ele é redirecionado para o final da história
 					principal.clearScreen();
 					principal.stories(nQuestion, true);
 					principal.stories(10, true);
+					return true;
 				} else {
 					nQuestion++;
 					switch (level) {
@@ -105,21 +108,24 @@ public class G6 {
 							principal.stories(nQuestion, true);
 							principal.coteTime(3000);
 							principal.easy(nQuestion, this.push, eLife);
-							break;
+							return true;
 
 						case 2: // Histórias e desafios - Médio
 							System.out.println("\n Resposta correta \n");
 							principal.stories(nQuestion, true);
 							principal.coteTime(3000);
 							principal.medium(nQuestion, this.push, eLife);
-							break;
+							return true;
 							
 						case 3: // Histórias e desafios - Difícil
 							System.out.println("\n Resposta correta \n");
 							principal.stories(nQuestion, true);
 							principal.coteTime(3000);
 							principal.hard(nQuestion, this.push, eLife);
-							break;
+							return true;
+						
+						default:
+							return false;
 					}
 				}
 			} else {
@@ -131,42 +137,51 @@ public class G6 {
 					principal.stories(0, false);
 					bonus = true;
 					principal.bonusQuestion(nQuestion);
+					return true;
 				}
 
 				switch (level) {
 					case 1: // Histórias e desafios - Fácil
 						if (eLife < 0) {
 							principal.easy(nQuestion, this.push = true, eLife);
+							return false;
 						} else {
 							principal.stories(9, false);
 							// Caso o jogador erre, mas tenha mais vidas extras ele pode responder novamente 
 							principal.easy(nQuestion, this.push, eLife); 
+							return true;
 						}
-						break;
 
 					case 2: // Histórias e desafios - Médio
 						if (eLife < 0) {
 							principal.medium(nQuestion, this.push = true, eLife);
+							return false;
 						} else {
 							principal.stories(9, false);
 							// Caso o jogador erre, mas tenha mais vidas extras ele pode responder novamente
 							principal.medium(nQuestion, this.push, eLife); 
+							return true;
 						}
-						break;
 						
 					case 3: // Histórias e desafios - Difícil
 						if (eLife < 0) {
 							principal.hard(nQuestion, this.push = true, eLife);
+							return false;
 						} else {
 							principal.stories(9, false);
 							// Caso o jogador erre, mas tenha mais vidas extras ele pode responder novamente 
 							principal.hard(nQuestion, this.push, eLife); 
+							return true;
 						}
-						break;
+					
+					default:
+						return false;
 				}
 			}	
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.err.println(e);
+			return false;
 		}
 	}
 
@@ -189,7 +204,7 @@ public class G6 {
 			System.out.println("GAME OVER!");
 			principal.exit();
 		} else {
-			System.out.println("Você tem "+ extraLife + " restante(s)");
+			System.out.println("Você tem "+ extraLife + " vidas extra(s) restante(s)");
 			// Saída histórias positivas
 			switch (nQuestion) {
 				case 1:
@@ -358,7 +373,7 @@ public class G6 {
 				System.out.println("GAME OVER!");
 				principal.exit();
 			} else {
-				System.out.println("Você tem "+ extraLife + " restante(s)");
+				System.out.println("Você tem "+ extraLife + " vidas extra(s) restante(s)");
 				
 				switch (nQuestion) {
 					case 1:
@@ -602,7 +617,7 @@ public class G6 {
 				System.out.println("GAME OVER!");
 				principal.exit();
 			} else {
-				System.out.println("Você tem "+ extraLife + " restante(s)");
+				System.out.println("Você tem "+ extraLife + " vidas extra(s) restante(s)");
 				// SaÃ­da histÃ³rias positivas
 				switch (nQuestion) {
 					case 1:
@@ -814,7 +829,7 @@ public class G6 {
 	 * Descrição dos parâmetros:
 	 * @param nQuestion
 	*/
-	public void bonusQuestion(int nQuestion) {
+	public boolean bonusQuestion(int nQuestion) {
 		String alternativa;	
 
 		principal.clearScreen();
@@ -838,11 +853,13 @@ public class G6 {
 
 		alternativa = input.next();	
 
-		if (alternativa.toLowerCase().equals(qQuestions[0]))
+		if (alternativa.toLowerCase().equals(qQuestions[0])){
 			principal.gateway(alternativa, 1, qQuestions[0], level, nQuestion, true); // Chamando o gateway
-		else 
+			return true;
+		} else {
 			principal.gateway(alternativa, 0, qQuestions[0], level, nQuestion, true); // Chamando o gateway
-		
+			return false;
+		}
 	}
 
 	/**
@@ -977,6 +994,9 @@ public class G6 {
 			case 14:
 				System.out.println("\t Mãe Natureza: Certo, agora é hora de me apresentar, sou a Natureza, eu estava acostumada a estar em toda parte, porém agora estou sumindo cada vez mais e preciso da sua ajuda para recuperar minha energia, os humanos estão sumindo, assim como você estava antes de eu conseguir transferir sua consciência para essa máquina\n");
 				break;
+			
+			default:
+				break;
 		}
 	}
 
@@ -1057,6 +1077,7 @@ public class G6 {
 					break;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.err.println(e);
 		}
 	}
@@ -1112,6 +1133,7 @@ public class G6 {
 			principal.menu(value);
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.err.println(e);
 		}
 	}
