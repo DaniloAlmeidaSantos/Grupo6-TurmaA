@@ -31,14 +31,14 @@ public class G6 {
 	/**
 	 * Gateway para sair do jogo
 	 */
-	public void exit() {
+	private void exit() {
 		System.exit(0);
 	}
 
 	/**
 	 * Limpa todos caracteres na tela
 	 */
-	public void clearScreen(){
+	private void clearScreen(){
 		char esc = 27;
 		String clear = esc + "[2J"; // Código ansi para limpar a tela
 		System.out.println(clear);
@@ -50,29 +50,31 @@ public class G6 {
      * Descrição dos parâmetros:
      * @param selectLevel : definir nível escolhido pelo usuário
      */
-    public void level(int selectLevel) {
+    public boolean level(int selectLevel) {
 		try {
 			switch (selectLevel) {
 				case 1 :  // Fácil
 					System.out.println("Nivel fácil selecionado, Voce tem 3 vidas extras");
 					principal.easy(1, this.push, 3);
-					break;
+					return true;
 				case 2: // Médio
 					System.out.println("Nivel médio selecionado, Voce tem 2 vidas extras");
 					principal.medium(1, this.push, 2);
-					break;
+					return true;
 				case 3: // Difícil
 					System.out.println("Nivel difícil selecionado, Voce tem 1 vidas extras");
 					principal.hard(1, this.push, 1);
-					break;
+					return true;
 				default:
 					System.out.println("Nivel Invalido");
 					principal.coteTime(3000);
 					principal.menu(5); // Caso o nivel digitado não esteja condicionando, é redirecionado para o menu
-					break;
+					return true;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.err.println(e);
+			return false;
 		}
     }
 
@@ -97,6 +99,7 @@ public class G6 {
 					principal.clearScreen();
 					principal.stories(nQuestion, true);
 					principal.stories(10, true);
+					return true;
 				} else {
 					nQuestion++;
 					switch (level) {
@@ -131,41 +134,48 @@ public class G6 {
 					principal.stories(0, false);
 					bonus = true;
 					principal.bonusQuestion(nQuestion);
+					return true;
 				}
 
 				switch (level) {
 					case 1: // Histórias e desafios - Fácil
 						if (eLife < 0) {
 							principal.easy(nQuestion, this.push = true, eLife);
+							return false;
 						} else {
 							principal.stories(9, false);
 							// Caso o jogador erre, mas tenha mais vidas extras ele pode responder novamente 
 							principal.easy(nQuestion, this.push, eLife); 
+							return true;
 						}
-						return true;
+
 					case 2: // Histórias e desafios - Médio
 						if (eLife < 0) {
 							principal.medium(nQuestion, this.push = true, eLife);
+							return false;
 						} else {
 							principal.stories(9, false);
 							// Caso o jogador erre, mas tenha mais vidas extras ele pode responder novamente
 							principal.medium(nQuestion, this.push, eLife); 
+							return true;
 						}
-						return true;
 						
 					case 3: // Histórias e desafios - Difícil
 						if (eLife < 0) {
 							principal.hard(nQuestion, this.push = true, eLife);
+							return false;
 						} else {
 							principal.stories(9, false);
 							// Caso o jogador erre, mas tenha mais vidas extras ele pode responder novamente 
 							principal.hard(nQuestion, this.push, eLife); 
+							return false;
 						}
-						return true;
 				}
 			}	
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.err.println(e);
+			return false;
 		}
 
 		return true;
@@ -188,7 +198,7 @@ public class G6 {
 		if (noPush) {
 			principal.stories(8, false);
 			System.out.println("GAME OVER!");
-			principal.exit();
+			//principal.exit();
 		} else {
 			System.out.println("Você tem "+ extraLife + " restante(s)");
 			// Saída histórias positivas
@@ -357,7 +367,7 @@ public class G6 {
 			if (noPush) {
 				principal.stories(8, false);
 				System.out.println("GAME OVER!");
-				principal.exit();
+				//principal.exit();
 			} else {
 				System.out.println("Você tem "+ extraLife + " restante(s)");
 				
@@ -601,7 +611,7 @@ public class G6 {
 			if (noPush) {
 				principal.stories(8, false);
 				System.out.println("GAME OVER!");
-				principal.exit();
+				//principal.exit();
 			} else {
 				System.out.println("Você tem "+ extraLife + " restante(s)");
 				// SaÃ­da histÃ³rias positivas
@@ -960,7 +970,7 @@ public class G6 {
 					System.out.println("\t                           888        8888888 888       888 ");
 					principal.coteTime(5000);
 					principal.credits();
-					principal.exit();
+					//principal.exit();
 					return true;
 				case 11:
 					System.out.println("\t Mãe Natureza: Oi, finalmente acordou. Estive esperando por isso por muito tempo, eu preciso da sua ajuda. Eu sei que você deve estar cheio de dúvidas, porém não temos tempo para isso. Prazer eu sou o que vocês humanos chamam de mãe natureza, e você? \n");
