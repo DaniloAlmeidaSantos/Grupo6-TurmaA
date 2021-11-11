@@ -30,22 +30,35 @@ public class G6 {
 
 	/**
 	 * @author Danilo Almeida
+	 * @author Guilherme Monteiro
 	 * 
 	 * Gateway para sair do jogo
 	 */
 	private void exit() {
-		System.exit(0);
+		try {
+			System.exit(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e);
+		}
+		
 	}
 
 	/**
 	 * @author Danilo Almeida
+	 * @author Guilherme Monteiro
 	 * 
 	 * Limpa todos caracteres na tela
 	 */
 	private void clearScreen(){
-		char esc = 27;
-		String clear = esc + "[2J"; // Código ansi para limpar a tela
-		System.out.println(clear);
+		try {
+			char esc = 27;
+			String clear = esc + "[2J"; // Código ansi para limpar a tela
+			System.out.println(clear);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e);
+		}	
 	}
 
 	/**
@@ -86,6 +99,7 @@ public class G6 {
 
 	/**
 	 * @author Danilo Almeida
+	 * @author Guilherme Monteiro
 	 * Gateway para respostas corretas e incorretas
 	 * 
 	 * Descrição parâmetros:
@@ -133,6 +147,7 @@ public class G6 {
 							return true;
 						
 						default:
+							System.out.println("Erro: level inexistente");
 							return false;
 					}
 				}
