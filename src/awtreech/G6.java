@@ -29,6 +29,8 @@ public class G6 {
 	private int level; // easy = 1 , medium = 2 , hard = 3
 
 	/**
+	 * @author Danilo Almeida
+	 * 
 	 * Gateway para sair do jogo
 	 */
 	private void exit() {
@@ -36,6 +38,8 @@ public class G6 {
 	}
 
 	/**
+	 * @author Danilo Almeida
+	 * 
 	 * Limpa todos caracteres na tela
 	 */
 	private void clearScreen(){
@@ -45,10 +49,12 @@ public class G6 {
 	}
 
 	/**
+	 * @author Guilherme Monteiro
      * Foi determinado nos cases de 1 a 3 o total de vidas extras
      * 
      * Descrição dos parâmetros:
      * @param selectLevel : definir nível escolhido pelo usuário
+	 * @return
      */
     public boolean level(int selectLevel) {
 		try {
@@ -79,6 +85,7 @@ public class G6 {
     }
 
 	/**
+	 * @author Danilo Almeida
 	 * Gateway para respostas corretas e incorretas
 	 * 
 	 * Descrição parâmetros:
@@ -88,6 +95,7 @@ public class G6 {
 	 * @param level : Nível do jogo
 	 * @param nQuestion : Número da questão
 	 * @param bonusQ : Verrifica se tem questão bônus pendente
+	 * @return
 	 */
 	public boolean gateway(String data, int eLife,  String cQuestion, int level, int nQuestion, boolean bonusQ) {
 		try {
@@ -130,6 +138,8 @@ public class G6 {
 				}
 			} else {
 				System.out.println("\n Resposta incorreta \n");
+
+				principal.stories(nQuestion, false);
 				
 				if (!bonusQ) eLife--;
 
@@ -186,6 +196,7 @@ public class G6 {
 	}
 
 	/**
+	 * @author Guilherme Monteiro
 	 * Questões nível Médio
 	 * 
 	 *  Descrição parâmetros:
@@ -266,7 +277,7 @@ public class G6 {
 
 					alternativa = input.next();
 					principal.gateway(alternativa, extraLife, qQuestions[0], level, nQuestion, false);
-						break;
+					break;
 				case 4:
 					System.out.println("\n Desafio: " + nQuestion);
 					qResponses.add("O simbolo (>)");
@@ -353,6 +364,7 @@ public class G6 {
 	}
 
 	/**
+	 * @author Danilo Almeida
 	 * Questões nível Médio
 	 * 
 	 *  Descrição parâmetros:
@@ -598,11 +610,12 @@ public class G6 {
 	}
 
 	/**
-	 * QuestÃµes nível difícil
+	 * @author Fernando Nascimento
+	 * Questões nível difícil
 	 * 
-	 *  Descrição parâmetros:
+	 *  Descrição do(s) parâmetro:
 	 * @param nQuestion : Número da questão atual
-	 * @param noPush : Verifica se faz push da funÃ§Ã£o de história negativa
+	 * @param noPush : Verifica se faz push da função de história negativa
 	 * @param extraLife : Vidas extras do player
 	 */
 	public void hard(int nQuestion, boolean noPush, int extraLife) {
@@ -824,10 +837,12 @@ public class G6 {
 	}
 
 	/**
+	 * @author Danilo Almeida
 	 * Chamada para questão bônus
 	 * 
-	 * Descrição dos parâmetros:
+	 * Descrição do(s) parâmetro(s):
 	 * @param nQuestion
+	 * @return
 	*/
 	public boolean bonusQuestion(int nQuestion) {
 		String alternativa;	
@@ -863,12 +878,12 @@ public class G6 {
 	}
 
 	/**
+	 * @author Fernando Nascimento
 	 * Retorna histórias referentes aos cápitulos
 	 * 
 	 * Descrição do(s) parâmetro(s):
 	 * @param cap : capítulo que o jogo se encontra
 	 * @param cResponse : define se a resposta é correta ou não
-	 * @param eLife : vidas extras restantes
 	 */
 	public void stories(int cap, boolean cResponse) throws Exception{
 		switch (cap) {
@@ -1025,6 +1040,7 @@ public class G6 {
 	}
 
 	/**
+	 * @author Danilo Almeida
 	 * Retorna menu do do jogo
 	 * 
 	 * Descrição do(s) parâmetro(s):
@@ -1084,6 +1100,7 @@ public class G6 {
 
 	
 	/**
+	 * @author Guilherme Monteiro
 	 * Retorna créditos do jogo
 	 * 
 	 * Descrição do(s) parâmetro(s):
@@ -1106,6 +1123,7 @@ public class G6 {
 	}
 
 	/**
+	 * @author Danilo Almeida
 	 * Retorna tempo de espera em milisegundos para a próxima thread
 	 * 
 	 *  Descrição do(s) parâmetro(s):
@@ -1116,11 +1134,12 @@ public class G6 {
 	}
 
 	/**
+	 * @author Fernando Nascimento
 	 * Classe principal
 	 * 
 	 * @param args
 	 */
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		try {
 			System.out.println("\tAWTreech\n");
 			System.out.println("1 - Jogar");
