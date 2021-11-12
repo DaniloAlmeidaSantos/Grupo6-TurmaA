@@ -21,8 +21,8 @@ public class G6 {
 	static Scanner input = new Scanner(System.in);
 
 	// Var Global
-	private boolean push = false; // Push : True = Encerra o jogo, False = NÃ£o encerra o jogo
-	private final String[] qQuestions = {"a", "b", "c", "d", "e"}; // Alternativas disponÃ­veis no jogo
+	private boolean push = false; // Push : True = Encerra o jogo, False = Não encerra o jogo
+	private final String[] qQuestions = {"a", "b", "c", "d", "e"}; // Alternativas disponíveis no jogo
 	private ArrayList<String> qResponses = new ArrayList<>();
 	private boolean bonus = false; // Verifica se foi realizado push para bonusQuestion
 	private String name; //name do jogador
@@ -53,7 +53,7 @@ public class G6 {
 	private void clearScreen(){
 		try {
 			char esc = 27;
-			String clear = esc + "[2J"; // CÃ³digo ansi para limpar a tela
+			String clear = esc + "[2J"; // Código ansi para limpar a tela
 			System.out.println(clear);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,29 +65,29 @@ public class G6 {
 	 * @author Guilherme Monteiro
      * Foi determinado nos cases de 1 a 3 o total de vidas extras
      * 
-     * DescriÃ§Ã£o dos parÃ¢metros:
-     * @param selectLevel : definir nÃ­vel escolhido pelo usuÃ¡rio
+     * Descrição dos parâmetros:
+     * @param selectLevel : definir nível escolhido pelo usuário
 	 * @return
      */
     public boolean level(int selectLevel) {
 		try {
 			switch (selectLevel) {
-				case 1 :  // FÃ¡cil
-					System.out.println("Nivel fÃ¡cil selecionado, Voce tem 3 vidas extras");
+				case 1 :  // Fácil
+					System.out.println("Nivel fácil selecionado, Voce tem 3 vidas extras");
 					principal.easy(1, this.push, 3);
 					return true;
-				case 2: // MÃ©dio
-					System.out.println("Nivel mÃ©dio selecionado, Voce tem 2 vidas extras");
+				case 2: // Médio
+					System.out.println("Nivel médio selecionado, Voce tem 2 vidas extras");
 					principal.medium(1, this.push, 2);
 					return true;
-				case 3: // DifÃ­cil
-					System.out.println("Nivel difÃ­cil selecionado, Voce tem 1 vidas extras");
+				case 3: // Difícil
+					System.out.println("Nivel difícil selecionado, Voce tem 1 vidas extras");
 					principal.hard(1, this.push, 1);
 					return true;
 				default:
 					System.out.println("Nivel Invalido");
 					principal.coteTime(3000);
-					principal.menu(5); // Caso o nivel digitado nÃ£o esteja condicionando, Ã© redirecionado para o menu
+					principal.menu(5); // Caso o nivel digitado não esteja condicionando, é redirecionado para o menu
 					return false;
 			}
 		} catch (Exception e) {
@@ -102,13 +102,13 @@ public class G6 {
 	 * @author Guilherme Monteiro
 	 * Gateway para respostas corretas e incorretas
 	 * 
-	 * DescriÃ§Ã£o parÃ¢metros:
-	 * @param data : resposta escolhida pelo usuÃ¡rio
+	 * Descrição parâmetros:
+	 * @param data : resposta escolhida pelo usuário
 	 * @param eLife : Vidas extras do player
-	 * @param cQuestion : Resposta correta para validaÃ§Ã£o
-	 * @param level : NÃ­vel do jogo
-	 * @param nQuestion : NÃºmero da questÃ£o
-	 * @param bonusQ : Verrifica se tem questÃ£o bÃ´nus pendente
+	 * @param cQuestion : Resposta correta para validação
+	 * @param level : Nível do jogo
+	 * @param nQuestion : Número da questão
+	 * @param bonusQ : Verrifica se tem questão bônus pendente
 	 * @return
 	 */
 	public boolean gateway(String data, int eLife,  String cQuestion, int level, int nQuestion, boolean bonusQ) {
@@ -117,7 +117,7 @@ public class G6 {
 			if (data.equalsIgnoreCase("sair")) principal.exit();
 
 			if (data.toLowerCase().equals(cQuestion) && nQuestion <= 7) {
-				if (nQuestion == 7){ // Se o jogador acertou a questÃ£o ele Ã© redirecionado para o final da histÃ³ria
+				if (nQuestion == 7){ // Se o jogador acertou a questão ele é redirecionado para o final da história
 					principal.clearScreen();
 					principal.stories(nQuestion, true);
 					principal.stories(10, true);
@@ -125,21 +125,21 @@ public class G6 {
 				} else {
 					nQuestion++;
 					switch (level) {
-						case 1: // HistÃ³rias e desafios - FÃ¡cil
+						case 1: // Histórias e desafios - Fácil
 							System.out.println("\n Resposta correta \n");
 							principal.stories(nQuestion, true);
 							principal.coteTime(3000);
 							principal.easy(nQuestion, this.push, eLife);
 							return true;
 
-						case 2: // HistÃ³rias e desafios - MÃ©dio
+						case 2: // Histórias e desafios - Médio
 							System.out.println("\n Resposta correta \n");
 							principal.stories(nQuestion, true);
 							principal.coteTime(3000);
 							principal.medium(nQuestion, this.push, eLife);
 							return true;
 							
-						case 3: // HistÃ³rias e desafios - DifÃ­cil
+						case 3: // Histórias e desafios - Difícil
 							System.out.println("\n Resposta correta \n");
 							principal.stories(nQuestion, true);
 							principal.coteTime(3000);
@@ -158,7 +158,7 @@ public class G6 {
 				
 				if (!bonusQ) eLife--;
 
-				if (!bonus && eLife == 0) { // Verifica se jÃ¡ foi realizado push e se qtde de vidas extras Ã© igual a 0
+				if (!bonus && eLife == 0) { // Verifica se já foi realizado push e se qtde de vidas extras é igual a 0
 					principal.stories(0, false);
 					bonus = true;
 					principal.bonusQuestion(nQuestion);
@@ -166,7 +166,7 @@ public class G6 {
 				}
 
 				switch (level) {
-					case 1: // HistÃ³rias e desafios - FÃ¡cil
+					case 1: // Histórias e desafios - Fácil
 						if (eLife < 0) {
 							principal.easy(nQuestion, this.push = true, eLife);
 							return false;
@@ -177,7 +177,7 @@ public class G6 {
 							return true;
 						}
 
-					case 2: // HistÃ³rias e desafios - MÃ©dio
+					case 2: // Histórias e desafios - Médio
 						if (eLife < 0) {
 							principal.medium(nQuestion, this.push = true, eLife);
 							return false;
@@ -188,7 +188,7 @@ public class G6 {
 							return true;
 						}
 						
-					case 3: // HistÃ³rias e desafios - DifÃ­cil
+					case 3: // Histórias e desafios - Difícil
 						if (eLife < 0) {
 							principal.hard(nQuestion, this.push = true, eLife);
 							return false;
@@ -212,11 +212,11 @@ public class G6 {
 
 	/**
 	 * @author Guilherme Monteiro
-	 * QuestÃµes nÃ­vel MÃ©dio
+	 * Questões nível Médio
 	 * 
-	 *  DescriÃ§Ã£o parÃ¢metros:
-	 * @param nQuestion : nÃºmero da questÃ£o atual
-	 * @param noPush : Verifica se faz push da funÃ§Ã£o de histÃ³ria negativa
+	 *  Descrição parâmetros:
+	 * @param nQuestion : número da questão atual
+	 * @param noPush : Verifica se faz push da função de história negativa
 	 * @param extraLife : Vidas extras do player
 	 */
 	public void easy(int nQuestion, boolean noPush, int extraLife) throws Exception {
@@ -230,19 +230,19 @@ public class G6 {
 			System.out.println("GAME OVER!");
 			principal.exit();
 		} else {
-			System.out.println("VocÃª tem "+ extraLife + " vidas extra(s) restante(s)");
-			// SaÃ­da histÃ³rias positivas
+			System.out.println("Você tem "+ extraLife + " vidas extra(s) restante(s)");
+			// Saída histórias positivas
 			switch (nQuestion) {
 				case 1:
 					System.out.println("\n Desafio: " + nQuestion);
-					// Chamar push da histÃ³ria positiva
+					// Chamar push da história positiva
 					qResponses.add("101010");// resposta correta
 					qResponses.add("101011");
 					qResponses.add("111010");
 					qResponses.add("101110");
 					qResponses.add("101111");
 
-					System.out.println("O valor em binÃ¡rio do decimal 42 Ã©:");
+					System.out.println("O valor em binário do decimal 42 é:");
 					System.out.println(qQuestions[0] + ") " + qResponses.get(0)); // resposta correta
 					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -262,7 +262,7 @@ public class G6 {
 					qResponses.add("A variavel (String)");// resposta correta
 					qResponses.add("A variavel (boolean)");
 	
-					System.out.println("Qual a variÃ¡vel utilizada para representar caracteres de nomes: ");
+					System.out.println("Qual a variável utilizada para representar caracteres de nomes: ");
 					System.out.println(qQuestions[0] + ") " + qResponses.get(0));
 					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -282,7 +282,7 @@ public class G6 {
 					qResponses.add("A variavel (String)");
 					qResponses.add("A variavel (boolean)");
 
-					System.out.println("Qual a variÃ¡vel utilizada para representar numeros inteiros: ");
+					System.out.println("Qual a variável utilizada para representar numeros inteiros: ");
 					System.out.println(qQuestions[0] + ") " + qResponses.get(0));// resposta correta
 					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -301,7 +301,7 @@ public class G6 {
 					qResponses.add("O simbolo (<=)");
 					qResponses.add("O simbolo (<>)");
 
-					System.out.println("Qual simbolo e representeado por maior igual na programaÃ§Ã£o: ");
+					System.out.println("Qual simbolo e representeado por maior igual na programação: ");
 					System.out.println(qQuestions[0] + ") " + qResponses.get(0));
 					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 					System.out.println(qQuestions[2] + ") " + qResponses.get(2));// resposta correta
@@ -321,7 +321,7 @@ public class G6 {
 					qResponses.add("break");
 					qResponses.add("string");
 
-					System.out.println("Qual a variÃ¡vel utilizada em uma estrutura de repetiÃ§Ã£o quando se sabe o \n numero de repetiÃ§Ãµes em que deve ser executada: ");
+					System.out.println("Qual a variável utilizada em uma estrutura de repetição quando se sabe o \n numero de repetições em que deve ser executada: ");
 					System.out.println(qQuestions[0] + ") " + qResponses.get(0));
 					System.out.println(qQuestions[1] + ") " + qResponses.get(1));// resposta correta
 					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -341,7 +341,7 @@ public class G6 {
 					qResponses.add("A variavel (String)");
 					qResponses.add("A variavel (if/else)");// resposta correta
 
-					System.out.println("Qual a variavel utilizada para determinar se uma condicao Ã© verdadeira ou falsa: ");
+					System.out.println("Qual a variavel utilizada para determinar se uma condicao é verdadeira ou falsa: ");
 					System.out.println(qQuestions[0] + ") " + qResponses.get(0));
 					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -357,12 +357,12 @@ public class G6 {
 					System.out.println("\n Desafio: " + nQuestion);
 					qResponses.add("if(x<20)");
 					qResponses.add("else(x>20)");
-					qResponses.add("x Ã© maior do que 20");
-					qResponses.add("x Ã© menor do que 20");// resposta correta
-					qResponses.add("System.out.println(â€œx Ã© menor do que 20â€�);");
+					qResponses.add("x é maior do que 20");
+					qResponses.add("x é menor do que 20");// resposta correta
+					qResponses.add("System.out.println(“x é menor do que 20”);");
 
-					System.out.println("No cÃ³digo apresentado abaixo, qual a saida verdadeira: " +
-					"\n int x = 10;\n if(x < 20){\nSystem.out.println(â€œx Ã© menor do que 20â€�);\n }else{\nSystem.out.println(â€œx Ã© maior do que 20â€�);\n}\n}\n}");
+					System.out.println("No código apresentado abaixo, qual a saida verdadeira: " +
+					"\n int x = 10;\n if(x < 20){\nSystem.out.println(“x é menor do que 20”);\n }else{\nSystem.out.println(“x é maior do que 20”);\n}\n}\n}");
 					System.out.println(qQuestions[0] + ") " + qResponses.get(0));
 					System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 					System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -380,11 +380,11 @@ public class G6 {
 
 	/**
 	 * @author Danilo Almeida
-	 * QuestÃµes nÃ­vel MÃ©dio
+	 * Questões nível Médio
 	 * 
-	 *  DescriÃ§Ã£o parÃ¢metros:
-	 * @param nQuestion : nÃºmero da questÃ£o atual
-	 * @param noPush : Verifica se faz push da funÃ§Ã£o de histÃ³ria negativa
+	 *  Descrição parâmetros:
+	 * @param nQuestion : número da questão atual
+	 * @param noPush : Verifica se faz push da função de história negativa
 	 * @param extraLife : Vidas extras do player
 	 */
 	public void medium(int nQuestion, boolean noPush, int extraLife) {
@@ -400,7 +400,7 @@ public class G6 {
 				System.out.println("GAME OVER!");
 				principal.exit();
 			} else {
-				System.out.println("VocÃª tem "+ extraLife + " vidas extra(s) restante(s)");
+				System.out.println("Você tem "+ extraLife + " vidas extra(s) restante(s)");
 				
 				switch (nQuestion) {
 					case 1:
@@ -408,18 +408,18 @@ public class G6 {
 						qResponses.clear();
 
 						principal.stories(14, true);
-						// Adicionando possÃ­veis respostas
+						// Adicionando possíveis respostas
 						qResponses.add("Incrementar x de 1 em 1."); // resposta correta
-						qResponses.add("Tirar a estrutura de decisÃ£o.");
-						qResponses.add("Colocar mais um laÃ§o de repetiÃ§Ã£o.");
-						qResponses.add("Utilizar o laÃ§o FOR.");
-						qResponses.add("Nenhuma dessas opÃ§Ãµes.");
+						qResponses.add("Tirar a estrutura de decisão.");
+						qResponses.add("Colocar mais um laço de repetição.");
+						qResponses.add("Utilizar o laço FOR.");
+						qResponses.add("Nenhuma dessas opções.");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\nPrecisamos de laÃ§o de repetiÃ§Ã£o que leia apenas dois input x e y, e vÃ¡ de x atÃ© y, e lance diariamente uma mÃ©dia da distÃ¢ncia de um valor ao outro, sendo eles nÃºmeros pares.");
-						System.out.println("Entretanto, ao rodar o seguinte cÃ³digo: \n\nwhile (x <= y) { \n    if (x%2 == 0) \n       System.out.println((x + y) / x);  \n} ");
-						System.out.println("\n O cÃ³digo fica em um loop infinito. Logicamente pensando, o que deve ser feito para resolver este problema?\n");
+						System.out.println("\nPrecisamos de laço de repetição que leia apenas dois input x e y, e vá de x até y, e lance diariamente uma média da distância de um valor ao outro, sendo eles números pares.");
+						System.out.println("Entretanto, ao rodar o seguinte código: \n\nwhile (x <= y) { \n    if (x%2 == 0) \n       System.out.println((x + y) / x);  \n} ");
+						System.out.println("\n O código fica em um loop infinito. Logicamente pensando, o que deve ser feito para resolver este problema?\n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -432,25 +432,25 @@ public class G6 {
 						}
 
 						alternativa = input.next();	
-						// Chamada do gateway para validaÃ§Ã£o de respostas
+						// Chamada do gateway para validação de respostas
 						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
 
 					case 2:
 						System.out.println("\n Desafio: " + nQuestion);
 						qResponses.clear();
-						// Adicionando possÃ­veis respostas	
+						// Adicionando possíveis respostas	
 						qResponses.add("do while"); // resposta correta
 						qResponses.add("while");
 						qResponses.add("if");
 						qResponses.add("foreach");
-						qResponses.add("O que melhor se adequar a sua regra de negÃ³cio.");
+						qResponses.add("O que melhor se adequar a sua regra de negócio.");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\nFoi decidido que uma execuÃ§Ã£o de cÃ³digo deve entrar em um laÃ§o de repetiÃ§Ã£o.");
-						System.out.println("Entretanto, precisamos executar o cÃ³digo dentro deste laÃ§o pela primeira vez, posteriormente validar se o cÃ³digo deverÃ¡ ficar em loop.");
-						System.out.println("\n Logicamente pensando nos modelos de execuÃ§Ãµs dos laÃ§os, qual o melhor laÃ§o a se utilizar nesta situaÃ§Ã£o? \n");
+						System.out.println("\nFoi decidido que uma execução de código deve entrar em um laço de repetição.");
+						System.out.println("Entretanto, precisamos executar o código dentro deste laço pela primeira vez, posteriormente validar se o código deverá ficar em loop.");
+						System.out.println("\n Logicamente pensando nos modelos de execuçõs dos laços, qual o melhor laço a se utilizar nesta situação? \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -463,23 +463,23 @@ public class G6 {
 						}
 
 						alternativa = input.next();
-						// Chamada do gateway para validaÃ§Ã£o de respostas	
+						// Chamada do gateway para validação de respostas	
 						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
 					case 3:	
 						System.out.println("\n Desafio: " + nQuestion);
 						qResponses.clear();
 
-						// Adicionando possÃ­veis respostas
-						qResponses.add("Utilizar a funÃ§Ã£o Math.pow(base, expoente)"); // resposta correta
-						qResponses.add("Utilizar o laÃ§o de repetiÃ§Ã£o multiplicando o resultado com a base x vezes definido pelo expoente");
-						qResponses.add("Utilizar o if para descobrir qual Ã© o expoente");
-						qResponses.add("Utilizar o funÃ§Ã£o Math.sqrt(base, expoente)");
-						qResponses.add("Nenhuma dessas opÃ§Ãµes");
+						// Adicionando possíveis respostas
+						qResponses.add("Utilizar a função Math.pow(base, expoente)"); // resposta correta
+						qResponses.add("Utilizar o laço de repetição multiplicando o resultado com a base x vezes definido pelo expoente");
+						qResponses.add("Utilizar o if para descobrir qual é o expoente");
+						qResponses.add("Utilizar o função Math.sqrt(base, expoente)");
+						qResponses.add("Nenhuma dessas opções");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n Dado que seja necessÃ¡rio o usuÃ¡rio digitar a base e o expoente, qual a forma mais simplificada de codificar essa necessidade?");
+						System.out.println("\n Dado que seja necessário o usuário digitar a base e o expoente, qual a forma mais simplificada de codificar essa necessidade?");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -489,26 +489,26 @@ public class G6 {
 
 						// Verifica qual a resposta correta e seta o index da alternativa certa
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("Utilizar a funÃ§Ã£o Math.pow(base, expoente)"))	index = i;
+							if (qResponses.get(i).equals("Utilizar a função Math.pow(base, expoente)"))	index = i;
 						}
 
 						alternativa = input.next();	
-						// Chamada do gateway para validaÃ§Ã£o de respostas
+						// Chamada do gateway para validação de respostas
 						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
 					case 4:			
 						System.out.println("\n Desafio: " + nQuestion);	
 						qResponses.clear();
-						// Adicionando possÃ­veis respostas
+						// Adicionando possíveis respostas
 						qResponses.add("Verdadeiro"); 
 						qResponses.add("Falso"); // resposta correta
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n Olhe para este cÃ³digo:");
-						System.out.println("\n Scanner input = new Scanner(System.in); \n System.out.println('Digite um valor numÃ©rico: ');\n int n1 = input.nextDouble();");
+						System.out.println("\n Olhe para este código:");
+						System.out.println("\n Scanner input = new Scanner(System.in); \n System.out.println('Digite um valor numérico: ');\n int n1 = input.nextDouble();");
 						System.out.println("\n if (n1 % 2 == 0) \n      System.out.println(n1);");
-						System.out.println("\n Este Ã© SIM funcional. \n");
+						System.out.println("\n Este é SIM funcional. \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.print("Escolha uma alternativa: ");
@@ -519,13 +519,13 @@ public class G6 {
 						}
 
 						alternativa = input.next();	
-						// Chamada do gateway para validaÃ§Ã£o de respostas
+						// Chamada do gateway para validação de respostas
 						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
 					case 5:	
 						System.out.println("\n Desafio: " + nQuestion);		
 						qResponses.clear();
-						// Adicionando possÃ­veis respostas		
+						// Adicionando possíveis respostas		
 						qResponses.add("Scanner input = new Scanner(System.in); \n int num =  input.nextInt();\n int count = 0; \n while (num >= count ){\n         if (num % 5 == 0){ \n              System.out.println(num);\n          }\n          count++\n }"); // resposta correta
 						qResponses.add("int num =  input.nextInt();\n int count = 0; \n while (num >= count ){\n         if (num % 5 == 0){ \n              System.out.println(num);\n              count++\n          }\n }");
 						qResponses.add("Scanner input = new Scanner(System.in) \n int num =  input.nextInt();\n int count = 0; \n do while (num >= count )\n         if (num % 5 == 0){ \n              System.out.println(num);\n              count++\n          }\n }");
@@ -534,8 +534,8 @@ public class G6 {
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n Preciso de um programa que seja capaz de ler um valor por valor, e imprimir apenas os nÃºmeros mÃºltiplos de 5.\n");
-						System.out.println("Analise as alternativas, e escolha aquela que melhor se enquadra para esta soluÃ§Ã£o: \n");
+						System.out.println("\n Preciso de um programa que seja capaz de ler um valor por valor, e imprimir apenas os números múltiplos de 5.\n");
+						System.out.println("Analise as alternativas, e escolha aquela que melhor se enquadra para esta solução: \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0));
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -550,24 +550,24 @@ public class G6 {
 						}
 
 						alternativa = input.next();	
-						// Chamada do gateway para validaÃ§Ã£o de respostas
+						// Chamada do gateway para validação de respostas
 						principal.gateway(alternativa, extraLife, qQuestions[index], level, nQuestion, false); // Chamando o gateway
 						break;
 					case 6:	
 						System.out.println("\n Desafio: " + nQuestion);			
 						qResponses.clear();
 								
-						qResponses.add("NÃ£o, mas a estrutura de decisÃ£o se torna inÃºtil, pois verifica um nÃºmero inicializado pelo sistema, sendo que logo apÃ³s tem leitura de um valor digitado pelo usuÃ¡rio"); // resposta correta
-						qResponses.add("Sim, o if nÃ£o pode verificar um valor inteiro igual a zero.");
-						qResponses.add("NÃ£o, cÃ³digo em perfeito estado.");
+						qResponses.add("Não, mas a estrutura de decisão se torna inútil, pois verifica um número inicializado pelo sistema, sendo que logo após tem leitura de um valor digitado pelo usuário"); // resposta correta
+						qResponses.add("Sim, o if não pode verificar um valor inteiro igual a zero.");
+						qResponses.add("Não, código em perfeito estado.");
 						qResponses.add("Sim, Scanner inicializado incorretamente.");
-						qResponses.add("Sim, na linguagem JAVA nÃ£o Ã© necessÃ¡rio ponto e vÃ­rgula ao final de um comando.");
+						qResponses.add("Sim, na linguagem JAVA não é necessário ponto e vírgula ao final de um comando.");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n Preciso da sua ajuda para melhorar / consertar este cÃ³digo: \n");
-						System.out.println("\n int num = 0; \n Scanner input = new Scanner(System.in); \n if (num % 2 == 0) { \n    System.out.print(num);\n}\n System.out.print('Digite um nÃºmero'); \n num = input.nextInt();\n");
-						System.out.println("\n VocÃª enxerga algum problema neste cÃ³digo? ");
+						System.out.println("\n Preciso da sua ajuda para melhorar / consertar este código: \n");
+						System.out.println("\n int num = 0; \n Scanner input = new Scanner(System.in); \n if (num % 2 == 0) { \n    System.out.print(num);\n}\n System.out.print('Digite um número'); \n num = input.nextInt();\n");
+						System.out.println("\n Você enxerga algum problema neste código? ");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -576,7 +576,7 @@ public class G6 {
 						System.out.print("Escolha uma alternativa: ");
 						// Verifica qual a resposta correta e seta o index da alternativa certa
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("NÃ£o, mas a estrutura de decisÃ£o se torna inÃºtil, pois verifica um nÃºmero inicializado pelo sistema, sendo que logo apÃ³s tem leitura de um valor digitado pelo usuÃ¡rio")){
+							if (qResponses.get(i).equals("Não, mas a estrutura de decisão se torna inútil, pois verifica um número inicializado pelo sistema, sendo que logo após tem leitura de um valor digitado pelo usuário")){
 								index = i;
 							}
 						}
@@ -589,18 +589,18 @@ public class G6 {
 						System.out.println("\n Desafio: " + nQuestion);
 						qResponses.clear();
 								
-						qResponses.add("Ao fechar as chaves no else, estÃ¡ sendo fechado com parÃªnteses"); // resposta correta
-						qResponses.add("A construÃ§Ã£o da lÃ³gica do cÃ³digo estÃ¡ incorreta");
-						qResponses.add("O for nÃ£o pode ter uma uma variÃ¡vel double incializado nele");
-						qResponses.add("A variÃ¡vel n estÃ¡ recebendo valores float ao invÃ©s de double");
-						qResponses.add("NÃ£o hÃ¡ erros!");
+						qResponses.add("Ao fechar as chaves no else, está sendo fechado com parênteses"); // resposta correta
+						qResponses.add("A construção da lógica do código está incorreta");
+						qResponses.add("O for não pode ter uma uma variável double incializado nele");
+						qResponses.add("A variável n está recebendo valores float ao invés de double");
+						qResponses.add("Não há erros!");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\nQual o problema deste cÃ³digo? \n");
-						System.out.println("\n Scanner input = new Scanner(System.in);\n System.out.print('Digite um nÃºmero natural: '); \n double n = input.nextFloat(); \n");
+						System.out.println("\nQual o problema deste código? \n");
+						System.out.println("\n Scanner input = new Scanner(System.in);\n System.out.print('Digite um número natural: '); \n double n = input.nextFloat(); \n");
 						System.out.println("\n double s1 = 1 / n; \n double s2 = n / 1;");
-						System.out.println("\n if (n < 0) System.out.println('NÃºmero digitado nÃ£o Ã© natural'); \n  {\n       System.out.println('NÃºmero digitado nÃ£o Ã© natural');");
+						System.out.println("\n if (n < 0) System.out.println('Número digitado não é natural'); \n  {\n       System.out.println('Número digitado não é natural');");
 						System.out.println("\n } else {\n    for (double i = 2; i<n; i++) {\n      s1 = i / n - i; \n      s2 = n - i / i;   \n    } \n)\n");
 						System.out.println("\n System.out.println('S = '+ (s1 + s2));\n ");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
@@ -611,7 +611,7 @@ public class G6 {
 						System.out.print("Escolha uma alternativa: ");
 
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("Ao fechar as chaves no else, estÃ¡ sendo fechado com parÃªnteses"))	index = i;
+							if (qResponses.get(i).equals("Ao fechar as chaves no else, está sendo fechado com parênteses"))	index = i;
 						}
 
 						alternativa = input.next();	
@@ -626,11 +626,11 @@ public class G6 {
 
 	/**
 	 * @author Fernando Nascimento
-	 * QuestÃµes nÃ­vel difÃ­cil
+	 * Questões nível difícil
 	 * 
-	 *  DescriÃ§Ã£o do(s) parÃ¢metro:
-	 * @param nQuestion : NÃºmero da questÃ£o atual
-	 * @param noPush : Verifica se faz push da funÃ§Ã£o de histÃ³ria negativa
+	 *  Descrição do(s) parâmetro:
+	 * @param nQuestion : Número da questão atual
+	 * @param noPush : Verifica se faz push da função de história negativa
 	 * @param extraLife : Vidas extras do player
 	 */
 	public void hard(int nQuestion, boolean noPush, int extraLife) {
@@ -645,24 +645,24 @@ public class G6 {
 				System.out.println("GAME OVER!");
 				principal.exit();
 			} else {
-				System.out.println("VocÃª tem "+ extraLife + " vidas extra(s) restante(s)");
-				// SaÃƒÂ­da histÃƒÂ³rias positivas
+				System.out.println("Você tem "+ extraLife + " vidas extra(s) restante(s)");
+				// SaÃ­da histÃ³rias positivas
 				switch (nQuestion) {
 					case 1:
 						System.out.println("\n Desafio: " + nQuestion);			
 						qResponses.clear();
 								
-						qResponses.add("Quando se sabe o ponto inicial e final, sabendo quantas vezes o cÃ³digo vai ser rodado."); // resposta correta
-						qResponses.add("Para executar o cÃ³digo ao mÃ­nimo uma vez.");
-						qResponses.add("Para verificar a condiÃ§Ã£o antes de executar o cÃ³digo.");
-						qResponses.add("Quando Ã© necessÃ¡rio executar outra estrutura de repetiÃ§Ã£o dentro da estrutura.");
-						qResponses.add("Quando Ã© preciso tratar apenas de uma variÃ¡vel.");
+						qResponses.add("Quando se sabe o ponto inicial e final, sabendo quantas vezes o código vai ser rodado."); // resposta correta
+						qResponses.add("Para executar o código ao mínimo uma vez.");
+						qResponses.add("Para verificar a condição antes de executar o código.");
+						qResponses.add("Quando é necessário executar outra estrutura de repetição dentro da estrutura.");
+						qResponses.add("Quando é preciso tratar apenas de uma variável.");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n As estruturas de repetiÃ§Ã£o muitas vezes podem ser trocadas por outras sem afetar o funcionamento do programa, ");
-						System.out.println("tambÃ©m cabe ao programador ou a equipe decidir entre essas estruturas devido ao seu funcionamento ser muito parecido, ");
-						System.out.println("em quais momentos Ã© melhor utilizar a estrutura for ao invÃ©s de outras? \n");
+						System.out.println("\n As estruturas de repetição muitas vezes podem ser trocadas por outras sem afetar o funcionamento do programa, ");
+						System.out.println("também cabe ao programador ou a equipe decidir entre essas estruturas devido ao seu funcionamento ser muito parecido, ");
+						System.out.println("em quais momentos é melhor utilizar a estrutura for ao invés de outras? \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -671,7 +671,7 @@ public class G6 {
 						System.out.print("Escolha uma alternativa: ");
 
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("Quando se sabe o ponto inicial e final, sabendo quantas vezes o cÃ³digo vai ser rodado."))	index = i;
+							if (qResponses.get(i).equals("Quando se sabe o ponto inicial e final, sabendo quantas vezes o código vai ser rodado."))	index = i;
 						}
 
 						alternativa = input.next();	
@@ -682,15 +682,15 @@ public class G6 {
 						System.out.println("\n Desafio: " + nQuestion);			
 						qResponses.clear();
 								
-						qResponses.add("Fechar a estrutura de repetiÃ§Ã£o"); // resposta correta
+						qResponses.add("Fechar a estrutura de repetição"); // resposta correta
 						qResponses.add("Sair de uma condicional (Ex: if)");
-						qResponses.add("Cancelar o funcionamento em apenas um momento, continuando logo apÃ³s");
-						qResponses.add("Cancelar toda a operaÃ§Ã£o, atÃ© aquela que jÃ¡ foi feita anteriormente");
-						qResponses.add("A funÃ§Ã£o aparece somente na presenÃ§a da estrutura Switch");
+						qResponses.add("Cancelar o funcionamento em apenas um momento, continuando logo após");
+						qResponses.add("Cancelar toda a operação, até aquela que já foi feita anteriormente");
+						qResponses.add("A função aparece somente na presença da estrutura Switch");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n Qual o funcionamento da funÃ§Ã£o break dentro dos laÃ§os de repetiÃ§Ã£o? \n");
+						System.out.println("\n Qual o funcionamento da função break dentro dos laços de repetição? \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -699,7 +699,7 @@ public class G6 {
 						System.out.print("Escolha uma alternativa: ");
 
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("Fechar a estrutura de repetiÃ§Ã£o"))	index = i;
+							if (qResponses.get(i).equals("Fechar a estrutura de repetição"))	index = i;
 						}
 
 						alternativa = input.next();	
@@ -709,15 +709,15 @@ public class G6 {
 						System.out.println("\n Desafio: " + nQuestion);			
 						qResponses.clear();
 								
-						qResponses.add("As funÃ§Ãµes static executam uma funÃ§Ã£o sem dependÃªncia do conteÃºdo de um objeto"); // resposta correta
-						qResponses.add("FunÃ§Ãµes static sÃ£o apenas usadas para retornar valores");
-						qResponses.add("Apenas o main Ã© uma funÃ§Ã£o static");
-						qResponses.add("FunÃ§Ãµes static executam uma funÃ§Ã£o apenas na dependÃªncia do conteÃºdo de um objeto");
-						qResponses.add("As duas funÃ§Ãµes apresentam as mesmas caracterÃ­sticas");
+						qResponses.add("As funções static executam uma função sem dependência do conteúdo de um objeto"); // resposta correta
+						qResponses.add("Funções static são apenas usadas para retornar valores");
+						qResponses.add("Apenas o main é uma função static");
+						qResponses.add("Funções static executam uma função apenas na dependência do conteúdo de um objeto");
+						qResponses.add("As duas funções apresentam as mesmas características");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n Qual a diferenÃ§a entre funÃ§Ãµes static e nÃ£o static? \n");
+						System.out.println("\n Qual a diferença entre funções static e não static? \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -726,7 +726,7 @@ public class G6 {
 						System.out.print("Escolha uma alternativa: ");
 
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("As funÃ§Ãµes static executam uma funÃ§Ã£o sem dependÃªncia do conteÃºdo de um objeto"))	index = i;
+							if (qResponses.get(i).equals("As funções static executam uma função sem dependência do conteúdo de um objeto"))	index = i;
 						}
 
 						alternativa = input.next();	
@@ -736,15 +736,15 @@ public class G6 {
 						System.out.println("\n Desafio: " + nQuestion);			
 						qResponses.clear();
 								
-						qResponses.add("Para aproveitar o mesmo mÃ©todo novamente no cÃ³digo"); // resposta correta
-						qResponses.add("Pois alguns procedimentos funcionam apenas se colocados sozinhos em funÃ§Ãµes");
-						qResponses.add("Pois a funÃ§Ã£o main funciona apenas utilizando outras funÃ§Ãµes");
-						qResponses.add("Para deixar o cÃ³digo mais limpo para o usuÃ¡rio");
-						qResponses.add("FunÃ§Ãµes alÃ©m do main sÃ£o exclusivas do Java, pois o programa exige que tudo esteja separado");
+						qResponses.add("Para aproveitar o mesmo método novamente no código"); // resposta correta
+						qResponses.add("Pois alguns procedimentos funcionam apenas se colocados sozinhos em funções");
+						qResponses.add("Pois a função main funciona apenas utilizando outras funções");
+						qResponses.add("Para deixar o código mais limpo para o usuário");
+						qResponses.add("Funções além do main são exclusivas do Java, pois o programa exige que tudo esteja separado");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n Por qual motivo se torna vÃ¡lido utilizar funÃ§Ãµes em cÃ³digos \n");
+						System.out.println("\n Por qual motivo se torna válido utilizar funções em códigos \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -753,7 +753,7 @@ public class G6 {
 						System.out.print("Escolha uma alternativa: ");
 
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("Para aproveitar o mesmo mÃ©todo novamente no cÃ³digo"))	index = i;
+							if (qResponses.get(i).equals("Para aproveitar o mesmo método novamente no código"))	index = i;
 						}
 
 						alternativa = input.next();	
@@ -763,15 +763,15 @@ public class G6 {
 						System.out.println("\n Desafio: " + nQuestion);			
 						qResponses.clear();
 								
-						qResponses.add("FunÃ§Ãµes static sÃ£o chamadas utilizando o nome da classe e o nome da funÃ§Ã£o"); // resposta correta
-						qResponses.add("NÃ£o existe diferenÃ§a");
-						qResponses.add("FunÃ§Ãµes nÃ£o static sÃ£o chamadas utilizando o nome da classe e o nome da funÃ§Ã£o");
-						qResponses.add("NÃ£o existe diferenÃ§a entre elas, apenas onde sÃ£o chamadas");
-						qResponses.add("FunÃ§Ãµes static sÃ£o chamadas utilizando somente o nome da funÃ§Ã£o");
+						qResponses.add("Funções static são chamadas utilizando o nome da classe e o nome da função"); // resposta correta
+						qResponses.add("Não existe diferença");
+						qResponses.add("Funções não static são chamadas utilizando o nome da classe e o nome da função");
+						qResponses.add("Não existe diferença entre elas, apenas onde são chamadas");
+						qResponses.add("Funções static são chamadas utilizando somente o nome da função");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n Qual a diferenÃ§a em chamar uma funÃ§Ã£o static e uma funÃ§Ã£o nÃ£o static? \n");
+						System.out.println("\n Qual a diferença em chamar uma função static e uma função não static? \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -780,7 +780,7 @@ public class G6 {
 						System.out.print("Escolha uma alternativa: ");
 
 						for (int i = 0; i < 5; i++) {
-							if (qResponses.get(i).equals("FunÃ§Ãµes static sÃ£o chamadas utilizando o nome da classe e o nome da funÃ§Ã£o"))	index = i;
+							if (qResponses.get(i).equals("Funções static são chamadas utilizando o nome da classe e o nome da função"))	index = i;
 						}
 
 						alternativa = input.next();	
@@ -792,13 +792,13 @@ public class G6 {
 								
 						qResponses.add("Para sinalizar que pode ser chamado em qualquer lugar"); // resposta correta
 						qResponses.add("Para sinalizar que pode ser chamado em qualquer lugar dentro das classes que usam a principal como base");
-						qResponses.add("Para sinalizar a funÃ§Ã£o main");
-						qResponses.add("A palavra nÃ£o possui nenhuma funÃ§Ã£o");
-						qResponses.add("Apenas classes do mesmo pacote podem chamar o mÃ©todo");
+						qResponses.add("Para sinalizar a função main");
+						qResponses.add("A palavra não possui nenhuma função");
+						qResponses.add("Apenas classes do mesmo pacote podem chamar o método");
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n Qual a funÃ§Ã£o da palavra public antes do mÃ©todo? \n");
+						System.out.println("\n Qual a função da palavra public antes do método? \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
 						System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 						System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -825,7 +825,7 @@ public class G6 {
 
 						Collections.shuffle(qResponses); // Embaralhando alternativas
 
-						System.out.println("\n Qual o valor de a ao final do cÃ³digo");
+						System.out.println("\n Qual o valor de a ao final do código");
 						System.out.println("int a = 0, b = 0, c;");
 						System.out.println("\n while (b<=3) { \n 	for (c = b; c <=3; c++) { \n a = a + 1 } \n b++ } \n System.out.println(a); \n");
 						System.out.println(qQuestions[0] + ") " + qResponses.get(0)); 
@@ -853,9 +853,9 @@ public class G6 {
 
 	/**
 	 * @author Danilo Almeida
-	 * Chamada para questÃ£o bÃ´nus
+	 * Chamada para questão bônus
 	 * 
-	 * DescriÃ§Ã£o do(s) parÃ¢metro(s):
+	 * Descrição do(s) parâmetro(s):
 	 * @param nQuestion
 	 * @return
 	*/
@@ -864,7 +864,7 @@ public class G6 {
 
 		principal.clearScreen();
 
-		System.out.println("\n VocÃª recebeu uma pergunta bÃ´nus, acertando irÃ¡ ganhar mais uma vida extra e pularÃ¡ a pergunta anterior.");
+		System.out.println("\n Você recebeu uma pergunta bônus, acertando irá ganhar mais uma vida extra e pulará a pergunta anterior.");
 		
 		qResponses.clear();
 		qResponses.add("public static void main(String[] args)"); // resposta correta
@@ -873,7 +873,7 @@ public class G6 {
 		qResponses.add("public static void java(int] argumentos)");
 		qResponses.add("private noStatic main(String[])");
 
-		System.out.println("\n Como Ã© contruÃ­do a funÃ§Ã£o 'main' do JAVA? ");
+		System.out.println("\n Como é contruído a função 'main' do JAVA? ");
 		System.out.println(qQuestions[0] + ") " + qResponses.get(0)); // resposta correta
 		System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 		System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -894,95 +894,95 @@ public class G6 {
 
 	/**
 	 * @author Fernando Nascimento
-	 * Retorna histÃ³rias referentes aos cÃ¡pitulos
+	 * Retorna histórias referentes aos cápitulos
 	 * 
-	 * DescriÃ§Ã£o do(s) parÃ¢metro(s):
-	 * @param cap : capÃ­tulo que o jogo se encontra
-	 * @param cResponse : define se a resposta Ã© correta ou nÃ£o
+	 * Descrição do(s) parâmetro(s):
+	 * @param cap : capítulo que o jogo se encontra
+	 * @param cResponse : define se a resposta é correta ou não
 	 */
 	public boolean stories(int cap, boolean cResponse) throws Exception{
 		switch (cap) {
 			case 0:
 				principal.coteTime(100);
-				System.out.println("\t MÃ£e Natureza: Parece que vocÃª estÃ¡ sem vidas extras, nÃ£o se preocupe, acerte esse desafio bÃ´nus e ganhe novas vidas extras. \n");
+				System.out.println("\t Mãe Natureza: Parece que você está sem vidas extras, não se preocupe, acerte esse desafio bônus e ganhe novas vidas extras. \n");
 				principal.coteTime(5000);
 				return true;
 			case 1:
 				principal.coteTime(100);
 				if (cResponse) 
-					System.out.println("\t MÃ£e Natureza: O que foi isso? Uma questÃ£o? Verdade elas podem meio que aparecer do nada. Vejo que acertou, sÃ³ para explicar, quando vocÃª acerta ou erra gera consequÃªncias, quando acerta a mÃ¡quina me ajuda a me recuperar, porÃ©m se erra ela comeÃ§a a destruir aquilo que me ajuda a manter minha energia. \n");
+					System.out.println("\t Mãe Natureza: O que foi isso? Uma questão? Verdade elas podem meio que aparecer do nada. Vejo que acertou, só para explicar, quando você acerta ou erra gera consequências, quando acerta a máquina me ajuda a me recuperar, porém se erra ela começa a destruir aquilo que me ajuda a manter minha energia. \n");
 				else 
-					System.out.println("\t MÃ£e Natureza: O que foi isso? Uma questÃ£o? Verdade elas podem meio que aparecer do nada. Vejo que errou, sÃ³ para explicar, quando vocÃª erra ou acerta gera consequÃªncias, quando acerta a mÃ¡quina me ajuda a me recuperar, porÃ©m se erra ela comeÃ§a a destruir aquilo que me ajuda a manter minha energia. \n");
+					System.out.println("\t Mãe Natureza: O que foi isso? Uma questão? Verdade elas podem meio que aparecer do nada. Vejo que errou, só para explicar, quando você erra ou acerta gera consequências, quando acerta a máquina me ajuda a me recuperar, porém se erra ela começa a destruir aquilo que me ajuda a manter minha energia. \n");
 					principal.coteTime(100);
-					System.out.println("\t MÃ£e Natureza: Eu sei o que deve estar pensando, tipo meu deus por que a mÃ¡quina que era para ensinar estÃ¡ ajudando ou destruindo as coisas? A explicaÃ§Ã£o para isso Ã© a modificaÃ§Ã£o que eu fiz nela. Eu coloquei apenas a parte boa claro, porÃ©m a prÃ³pria mÃ¡quina fez a parte contraria tambÃ©m. \n");
+					System.out.println("\t Mãe Natureza: Eu sei o que deve estar pensando, tipo meu deus por que a máquina que era para ensinar está ajudando ou destruindo as coisas? A explicação para isso é a modificação que eu fiz nela. Eu coloquei apenas a parte boa claro, porém a própria máquina fez a parte contraria também. \n");
 
 				principal.coteTime(5000);
 				return true;
 			case 2:
 				principal.coteTime(100);
 				if (cResponse) 
-					System.out.println("\t MÃ£e Natureza: Vejo que fiz a escolha certa de pedir a sua ajuda, pode ser apenas um pouco, mas jÃ¡ vejo que minha energia estÃ¡ se recuperando. Veja vocÃª plantou arvores por toda essa regiÃ£o, muito obrigada. \n");
+					System.out.println("\t Mãe Natureza: Vejo que fiz a escolha certa de pedir a sua ajuda, pode ser apenas um pouco, mas já vejo que minha energia está se recuperando. Veja você plantou arvores por toda essa região, muito obrigada. \n");
 				else 
-					System.out.println("\t MÃ£e Natureza: A mÃ¡quina comeÃ§ou a desmatar toda a regiÃ£o, estou me sentindo fraca, mas nÃ£o se preocupe, conforme vocÃª acertar as questÃµes eu serei capaz de me recuperar. \n");
+					System.out.println("\t Mãe Natureza: A máquina começou a desmatar toda a região, estou me sentindo fraca, mas não se preocupe, conforme você acertar as questões eu serei capaz de me recuperar. \n");
 
 				principal.coteTime(5000);
 				return true;
 			case 3:
 				principal.coteTime(100);
 				if (cResponse) 
-					System.out.println("\t MÃ£e Natureza: JÃ¡ consigo sentir a minha forÃ§a aumentando novamente, muito obrigada, mas ainda tem um longo caminho para percorrer, dessa vez a mÃ¡quina despoluiu a nascente desse rio. \n");
+					System.out.println("\t Mãe Natureza: Já consigo sentir a minha força aumentando novamente, muito obrigada, mas ainda tem um longo caminho para percorrer, dessa vez a máquina despoluiu a nascente desse rio. \n");
 				else 
-					System.out.println("\t MÃ£e Natureza: Minha forÃ§a estÃ¡ diminuindo, nÃ£o se preocupe sei que vocÃª consegue acertar na prÃ³xima, veja, a mÃ¡quina acabou de poluir ainda mais a nascente do rio. \n");
+					System.out.println("\t Mãe Natureza: Minha força está diminuindo, não se preocupe sei que você consegue acertar na próxima, veja, a máquina acabou de poluir ainda mais a nascente do rio. \n");
 				return true;
 			case 4:
 				principal.coteTime(100);
 				if (cResponse) 
-					System.out.println("\t MÃ£e Natureza: Certo, acho que iremos conseguir recuperar minha forÃ§a, apenas tente manter acertando as questÃµes, a mÃ¡quina comeÃ§ou a despoluir o ar, retirando todo o excesso de gÃ¡s carbÃ´nico. \n");
+					System.out.println("\t Mãe Natureza: Certo, acho que iremos conseguir recuperar minha força, apenas tente manter acertando as questões, a máquina começou a despoluir o ar, retirando todo o excesso de gás carbônico. \n");
 				else 
-					System.out.println("\t MÃ£e Natureza: Cof.Cof. A mÃ¡quina estÃ¡ soltando gases tÃ³xicos, se continuar assim a situaÃ§Ã£o pode ser irreversÃ­vel. \n");
+					System.out.println("\t Mãe Natureza: Cof.Cof. A máquina está soltando gases tóxicos, se continuar assim a situação pode ser irreversível. \n");
 				
 				principal.coteTime(5000);
 				return true;
 			case 5:
 				principal.coteTime(100);
 				if (cResponse) 
-					System.out.println("\t MÃ£e Natureza: A mÃ¡quina estÃ¡ retirando a toxicidade do solo, isto Ã© incrÃ­vel!! Muito obrigada, se continuar assim tenho certeza de que vai conseguir. \n");
+					System.out.println("\t Mãe Natureza: A máquina está retirando a toxicidade do solo, isto é incrível!! Muito obrigada, se continuar assim tenho certeza de que vai conseguir. \n");
 				else 
-					System.out.println("\t MÃ£e Natureza: A mÃ¡quina comeÃ§ou a liberar resÃ­duos tÃ³xicos no solo, isto Ã© bem ruim, continue com foco para conseguirmos reverter essa situaÃ§Ã£o. \n");
+					System.out.println("\t Mãe Natureza: A máquina começou a liberar resíduos tóxicos no solo, isto é bem ruim, continue com foco para conseguirmos reverter essa situação. \n");
 
 				principal.coteTime(5000);
 				return true;
 			case 6:
 				principal.coteTime(100);
 				if (cResponse) 
-					System.out.println("\t MÃ£e Natureza: Vejo que a flora estÃ¡ conseguindo se estabelecer com a ajuda da mÃ¡quina, se continuar dessa maneira logo a fauna conseguirÃ¡ se estabelecer tambÃ©m. \n");
+					System.out.println("\t Mãe Natureza: Vejo que a flora está conseguindo se estabelecer com a ajuda da máquina, se continuar dessa maneira logo a fauna conseguirá se estabelecer também. \n");
 				else 
-					System.out.println("\t MÃ£e Natureza: A situaÃ§Ã£o nÃ£o poderia ser pior, a mÃ¡quina estÃ¡ derramando Ã³leo no rio, assim as espÃ©cies que conseguiram sobreviver atÃ© agora irÃ£o morrer asfixiadas. \n");
+					System.out.println("\t Mãe Natureza: A situação não poderia ser pior, a máquina está derramando óleo no rio, assim as espécies que conseguiram sobreviver até agora irão morrer asfixiadas. \n");
 
 				principal.coteTime(5000);
 				return true;
 			case 7:
 				principal.coteTime(100);
 				if (cResponse)
-					System.out.println("\t MÃ£e Natureza: Consigo sentir, minha energia e forÃ§a estÃ£o recuperados, muito obrigado por sua ajuda, eu queria ter alguma forma de retribuir, porÃ©m por agora eu preciso cuidar de todo esse planeta, espero que nos encontremos outra vez, e nÃ£o se preocupe eu irei te retirar dessa mÃ¡quina. \n");
+					System.out.println("\t Mãe Natureza: Consigo sentir, minha energia e força estão recuperados, muito obrigado por sua ajuda, eu queria ter alguma forma de retribuir, porém por agora eu preciso cuidar de todo esse planeta, espero que nos encontremos outra vez, e não se preocupe eu irei te retirar dessa máquina. \n");
 				else
-					System.out.println("\t MÃ£e natureza: Estou sentindo minha energia esvaindo, o oxigÃªnio estÃ¡ deteriorado, os seres deste planeta irÃ£o morrer! :(");
+					System.out.println("\t Mãe natureza: Estou sentindo minha energia esvaindo, o oxigênio está deteriorado, os seres deste planeta irão morrer! :(");
 				
 				principal.coteTime(5000);
 				return true;
 			case 8:
 				principal.coteTime(100);
-				System.out.println("\t MÃ£e Natureza: Acho que agora se tornou irreversÃ­vel, pobres animais nÃ£o perceberam que estavam apenas se autodestruindo, muito obrigado por tentar me ajudar, mas agora Ã© um adeus. Queria ter passado mais tempo ao seu lado. \n");
+				System.out.println("\t Mãe Natureza: Acho que agora se tornou irreversível, pobres animais não perceberam que estavam apenas se autodestruindo, muito obrigado por tentar me ajudar, mas agora é um adeus. Queria ter passado mais tempo ao seu lado. \n");
 				principal.coteTime(5000);
 				return true;
 			case 9:
 				principal.coteTime(100);
-				System.out.println("\t MÃ£e Natureza: Ainda temos alguma chance sobrando, foque e eu tenho certeza de que vocÃª irÃ¡ conseguir \n");
+				System.out.println("\t Mãe Natureza: Ainda temos alguma chance sobrando, foque e eu tenho certeza de que você irá conseguir \n");
 				principal.coteTime(3000);
 				return true;
 			case 10: 
-				System.out.println("\t MÃ£e Natureza: " + name + " vocÃª Ã© um herÃ³i, graÃ§as a vocÃª todos os seres deste planeta poderÃ£o viver... ParabÃ©ns, vocÃª Ã© a pessoa mais inteligente que jÃ¡ vi.");
-				System.out.println("\t MÃ£e Natureza: Ahhh... Mil perdÃµes esqueci de te tirar deste ambiente virtual... AtÃ© a prÃ³xima.");
+				System.out.println("\t Mãe Natureza: " + name + " você é um herói, graças a você todos os seres deste planeta poderão viver... Parabéns, você é a pessoa mais inteligente que já vi.");
+				System.out.println("\t Mãe Natureza: Ahhh... Mil perdões esqueci de te tirar deste ambiente virtual... Até a próxima.");
 				principal.coteTime(8000);
 				principal.clearScreen();
 				
@@ -1006,49 +1006,48 @@ public class G6 {
 				principal.exit();
 				return true;
 			case 11:
-				System.out.println("\t MÃ£e Natureza: Oi, finalmente acordou. Estive esperando por isso por muito tempo, eu preciso da sua ajuda. Eu sei que vocÃª deve estar cheio de dÃºvidas, porÃ©m nÃ£o temos tempo para isso. Prazer eu sou o que vocÃªs humanos chamam de mÃ£e natureza, e vocÃª? \n");
+				System.out.println("\t Mãe Natureza: Oi, finalmente acordou. Estive esperando por isso por muito tempo, eu preciso da sua ajuda. Eu sei que você deve estar cheio de dúvidas, porém não temos tempo para isso. Prazer eu sou o que vocês humanos chamam de mãe natureza, e você? \n");
 				return true;
 			case 12:
 				System.out.println("\n");
-				System.out.println("\t MÃ£e Natureza: Me desculpe nÃ£o me apresentar formalmente, porÃ©m atualmente da maneira que estou eu posso apenas me manifestar como uma voz em sua cabeÃ§a. Enfim chega de demora, preciso da sua ajuda para restaurar a minha forma original, se nÃ£o conseguir eu irei morrer, e comigo todo o planeta \n");
+				System.out.println("\t Mãe Natureza: Me desculpe não me apresentar formalmente, porém atualmente da maneira que estou eu posso apenas me manifestar como uma voz em sua cabeça. Enfim chega de demora, preciso da sua ajuda para restaurar a minha forma original, se não conseguir eu irei morrer, e comigo todo o planeta \n");
 				principal.coteTime(100);
-				System.out.println("\t MÃ£e Natureza: SerÃ¡ que estÃ¡ funcionando? Oi? Ufa acho que funcionou, sÃ³ para ter certeza, consegue me dizer o seu nome? \n");
+				System.out.println("\t Mãe Natureza: Será que está funcionando? Oi? Ufa acho que funcionou, só para ter certeza, consegue me dizer o seu nome? \n");
 				principal.coteTime(100);
-				System.out.println("\t " + name + ": Meu nome Ã© " + name + " \n");
+				System.out.println("\t " + name + ": Meu nome é " + name + " \n");
 				principal.coteTime(1000);
-				System.out.println("\t MÃ£e Natureza: Certo acho que estÃ¡ funcionando, bom antes de me introduzir para vocÃª eu deveria explicar a situaÃ§Ã£o, eu transferi a sua consciÃªncia para uma mÃ¡quina que encontrei em um local onde ensinavam pessoas como programar e tudo mais, entÃ£o provavelmente para manter o funcionamento aparecerÃ£o questÃµes que vocÃª precisa acertar ok? \n");
+				System.out.println("\t Mãe Natureza: Certo acho que está funcionando, bom antes de me introduzir para você eu deveria explicar a situação, eu transferi a sua consciência para uma máquina que encontrei em um local onde ensinavam pessoas como programar e tudo mais, então provavelmente para manter o funcionamento aparecerão questões que você precisa acertar ok? \n");
 				return true;
 			case 13:
-				System.out.println("\t MÃ£e Natureza: Primeiro, precisa dizer a mÃ¡quina o nÃ­vel que vocÃª estÃ¡ em programaÃ§Ã£o, se eu nÃ£o me engano Ã© de 1 a 3, tipo um fÃ¡cil, mÃ©dio e difÃ­cil, sabe? \n");
+				System.out.println("\t Mãe Natureza: Primeiro, precisa dizer a máquina o nível que você está em programação, se eu não me engano é de 1 a 3, tipo um fácil, médio e difícil, sabe? \n");
 				return true;
 			case 14:
-				System.out.println("\t MÃ£e Natureza: Certo, agora Ã© hora de me apresentar, sou a Natureza, eu estava acostumada a estar em toda parte, porÃ©m agora estou sumindo cada vez mais e preciso da sua ajuda para recuperar minha energia, os humanos estÃ£o sumindo, assim como vocÃª estava antes de eu conseguir transferir sua consciÃªncia para essa mÃ¡quina\n");
+				System.out.println("\t Mãe Natureza: Certo, agora é hora de me apresentar, sou a Natureza, eu estava acostumada a estar em toda parte, porém agora estou sumindo cada vez mais e preciso da sua ajuda para recuperar minha energia, os humanos estão sumindo, assim como você estava antes de eu conseguir transferir sua consciência para essa máquina\n");
 				return true;
 			
 			default:
-				//Caso ocorra algum problema para encontrar o método
-				System.out.println("História não encontrada");
+				System.out.println("Erro: História não encontrada");
 				return false;
 		}
 	}
 
 	/**
-	 * Retorna instruÃ§Ãµes para o jogo
+	 * Retorna instruções para o jogo
 	 * 
-	 * DescriÃ§Ã£o do(s) parÃ¢metro(s):
+	 * Descrição do(s) parâmetro(s):
 	 */
 	public void instructions() throws Exception {
-		System.out.println("\t \n                                   InstruÃ§Ãµes - AWTreech \n");
-		System.out.println("\t - O jogo sÃ³ comeÃ§a quando digitar o comando '1';");
-		System.out.println("\t - VocÃª poderÃ¡ sair a qualquer momento, digitando 'sair';");
-		System.out.println("\t - Assim que escolher a dificuldade do jogo, vocÃª terÃ¡ vidas extras, se adaptando com dificuldade:");
-		System.out.println("\t      * NÃ­vel FÃ¡cil - VocÃª terÃ¡ 3 vidas extras");
-		System.out.println("\t      * NÃ­vel MÃ©dio - VocÃª terÃ¡ 2 vidas extras");
-		System.out.println("\t      * NÃ­vel DifÃ­cil - VocÃª terÃ¡ 1 vidas extras");
+		System.out.println("\t \n                                   Instruções - AWTreech \n");
+		System.out.println("\t - O jogo só começa quando digitar o comando '1';");
+		System.out.println("\t - Você poderá sair a qualquer momento, digitando 'sair';");
+		System.out.println("\t - Assim que escolher a dificuldade do jogo, você terá vidas extras, se adaptando com dificuldade:");
+		System.out.println("\t      * Nível Fácil - Você terá 3 vidas extras");
+		System.out.println("\t      * Nível Médio - Você terá 2 vidas extras");
+		System.out.println("\t      * Nível Difícil - Você terá 1 vidas extras");
 
 		System.out.println("1 - Jogar");
-		System.out.println("2 - CrÃ©ditos");
-		System.out.println("3 - InstruÃ§Ã£o");
+		System.out.println("2 - Créditos");
+		System.out.println("3 - Instrução");
 		System.out.println("4 - Sair");
 		System.out.print("\nDigite algum comando: ");
 
@@ -1060,48 +1059,48 @@ public class G6 {
 	 * @author Danilo Almeida
 	 * Retorna menu do do jogo
 	 * 
-	 * DescriÃ§Ã£o do(s) parÃ¢metro(s):
-	 * @param option : opÃ§Ã£o escolhida pelo usuÃ¡rio
+	 * Descrição do(s) parâmetro(s):
+	 * @param option : opção escolhida pelo usuário
 	 */
 	public void menu(int option) throws Exception{
 		try {
 			switch (option) {
 				case 1: // Jogo
 					principal.clearScreen(); // Limpando a tela
-					// Dando introduÃ§Ã£o ao jogo
+					// Dando introdução ao jogo
 					principal.stories(11, true);
-					// Armazenando nome em variÃ¡vel global
+					// Armazenando nome em variável global
 					System.out.print("\t Digite o nome do seu personagem: ");
 					name = input.next();
 					principal.stories(12, true);
 					// Definindo level do jogo
 					principal.stories(13, true);
-					System.out.print("\t Digite, de 1 a 3 qual seu nÃ­vel em programaÃ§Ã£o? ");
+					System.out.print("\t Digite, de 1 a 3 qual seu nível em programação? ");
 					level = input.nextInt();
 					principal.level(level);
 					break;
-				case 2: // CrÃ©ditos
+				case 2: // Créditos
 					principal.credits();
 					break;
-				case 3: // InstruÃ§Ãµes
+				case 3: // Instruções
 					principal.instructions();
 				case 4: // Sair
 					principal.exit();
 					break;
-				case 5: // Caso o usuÃ¡rio digite algum valor nÃ£o aceitÃ¡vel no level
+				case 5: // Caso o usuário digite algum valor não aceitável no level
 					principal.clearScreen();
-					System.out.println("\t Digite o nÃ­vel desejÃ¡vel, sÃ³ que dessa vez de 1 atÃ© 3! \n");
-					System.out.print("\t Digite, de 1 a 3 qual seu nÃ­vel em programaÃ§Ã£o? ");
+					System.out.println("\t Digite o nível desejável, só que dessa vez de 1 até 3! \n");
+					System.out.print("\t Digite, de 1 a 3 qual seu nível em programação? ");
 					level = input.nextInt();
 					principal.level(level);
 					break;
 			
-				default: // Caso seja passado uma opÃ§Ã£o invalÃ­da, retorna para o menu
-					System.out.println("\nComando invÃ¡lido. Tente novamente.");
+				default: // Caso seja passado uma opção invalída, retorna para o menu
+					System.out.println("\nComando inválido. Tente novamente.");
 					System.out.println("\n \tAWTreech\n");
 					System.out.println("1 - Jogar");
-					System.out.println("2 - CrÃ©ditos");
-					System.out.println("3 - InstruÃ§Ã£o");
+					System.out.println("2 - Créditos");
+					System.out.println("3 - Instrução");
 					System.out.println("4 - Sair");
 					System.out.print("\nDigite algum comando: ");
 					
@@ -1118,9 +1117,9 @@ public class G6 {
 	
 	/**
 	 * @author Guilherme Monteiro
-	 * Retorna crÃ©ditos do jogo
+	 * Retorna créditos do jogo
 	 * 
-	 * DescriÃ§Ã£o do(s) parÃ¢metro(s):
+	 * Descrição do(s) parâmetro(s):
 	 */
 	public void credits() throws Exception {
 		System.out.println("\n \tCriadores do jogo: \n");
@@ -1130,8 +1129,8 @@ public class G6 {
 
 		System.out.println("\n \tAWTreech\n");
 		System.out.println("1 - Jogar");
-		System.out.println("2 - CrÃ©ditos");
-		System.out.println("3 - InstruÃ§Ã£o");
+		System.out.println("2 - Créditos");
+		System.out.println("3 - Instrução");
 		System.out.println("4 - Sair");
 		System.out.print("\nDigite algum comando: ");
 
@@ -1141,9 +1140,9 @@ public class G6 {
 
 	/**
 	 * @author Danilo Almeida
-	 * Retorna tempo de espera em milisegundos para a prÃ³xima thread
+	 * Retorna tempo de espera em milisegundos para a próxima thread
 	 * 
-	 *  DescriÃ§Ã£o do(s) parÃ¢metro(s):
+	 *  Descrição do(s) parâmetro(s):
 	 * @param milSegs : Define o tempo de espera
 	 */
 	private void coteTime(int milSegs) throws InterruptedException {
@@ -1160,8 +1159,8 @@ public class G6 {
 		try {
 			System.out.println("\tAWTreech\n");
 			System.out.println("1 - Jogar");
-			System.out.println("2 - CrÃ©ditos");
-			System.out.println("3 - InstruÃ§Ã£o");
+			System.out.println("2 - Créditos");
+			System.out.println("3 - Instrução");
 			System.out.println("4 - Sair");
 			System.out.print("\nDigite algum comando: ");
 
