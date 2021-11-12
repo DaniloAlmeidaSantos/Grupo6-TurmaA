@@ -133,7 +133,7 @@ public class G6 {
 				if (!bonus && eLife == 0) { // Verifica se já foi realizado push e se qtde de vidas extras é igual a 0
 					principal.stories(0, false);
 					bonus = true;
-					principal.bonusQuestion(nQuestion);
+					principal.bonusQuestion(nQuestion,"A");
 					return true;
 				}
 
@@ -825,8 +825,8 @@ public class G6 {
 	 * Descrição dos parâmetros:
 	 * @param nQuestion
 	*/
-	public boolean bonusQuestion(int nQuestion) {
-		String alternativa;	
+	public boolean bonusQuestion(int nQuestion,String resposta) {
+		
 
 		principal.clearScreen();
 
@@ -839,7 +839,7 @@ public class G6 {
 		qResponses.add("public static void java(int] argumentos)");
 		qResponses.add("private noStatic main(String[])");
 
-		System.out.println("\n Como é contruído a função 'main' do JAVA? ");
+		System.out.println("\n Como é construído a função 'main' do JAVA? ");
 		System.out.println(qQuestions[0] + ") " + qResponses.get(0)); // resposta correta
 		System.out.println(qQuestions[1] + ") " + qResponses.get(1));
 		System.out.println(qQuestions[2] + ") " + qResponses.get(2));
@@ -847,13 +847,11 @@ public class G6 {
 		System.out.println(qQuestions[4] + ") " + qResponses.get(4));
 		System.out.print("Escolha uma alternativa: ");
 
-		alternativa = input.next();	
+		
 		// Verifica se a resposta está correta
-		if (alternativa.toLowerCase().equals(qQuestions[0])){
-			principal.gateway(alternativa, 1, qQuestions[0], level, nQuestion, true); // Chamando o gateway
+		if (resposta.toLowerCase().equals(qQuestions[0])){
 			return true;
 		} else {
-			principal.gateway(alternativa, 0, qQuestions[0], level, nQuestion, true); // Chamando o gateway
 			return false;
 		}
 	}
