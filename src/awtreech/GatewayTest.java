@@ -114,15 +114,9 @@ public class GatewayTest {
 	}
 
 	/**
-	 * @param args
+	 * Retorna os resultados da execução dos testes
 	 */
-	public static void main(String[] args) {
-		gatewayMaxQuestions();
-		gatewayMaxLevel();
-		gatewayLastChanceV1();
-		gatewayLastChanceV2();
-		gatewayNegativeELife();
-
+	public static void expectedResults() {
 		System.out.println("Casos de testes com resultados esperados com sucesso: " + passedOnTest);
 		System.out.println("Casos de testes com falhas: " + noPassedOnTest);
 
@@ -135,6 +129,20 @@ public class GatewayTest {
 		for (String CTNoPassed : arrNoPassedOnTest) {
 			System.out.print("\t" + CTNoPassed);
 		}
+	}
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		gatewayMaxQuestions();
+		gatewayMaxLevel();
+		gatewayLastChanceV1();
+		gatewayLastChanceV2();
+		gatewayNegativeELife();
+
+		// Retornando resultados:
+		expectedResults();
 	}
 
 }
