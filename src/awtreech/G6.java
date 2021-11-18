@@ -1067,16 +1067,21 @@ public class G6 {
 			switch (option) {
 				case 1: // Jogo
 					principal.clearScreen(); // Limpando a tela
+					
 					// Dando introdução ao jogo
 					principal.stories(11, true);
+
 					// Armazenando nome em variável global
 					System.out.print("\t Digite o nome do seu personagem: ");
 					name = input.next();
+
 					principal.stories(12, true);
+
 					// Definindo level do jogo
 					principal.stories(13, true);
 					System.out.print("\t Digite, de 1 a 3 qual seu nível em programação? ");
 					level = input.nextInt();
+					
 					principal.level(level);
 					break;
 				case 2: // Créditos
@@ -1086,13 +1091,6 @@ public class G6 {
 					principal.instructions();
 				case 4: // Sair
 					principal.exit();
-					break;
-				case 5: // Caso o usuário digite algum valor não aceitável no level
-					principal.clearScreen();
-					System.out.println("\t Digite o nível desejável, só que dessa vez de 1 até 3! \n");
-					System.out.print("\t Digite, de 1 a 3 qual seu nível em programação? ");
-					level = input.nextInt();
-					principal.level(level);
 					break;
 			
 				default: // Caso seja passado uma opção invalída, retorna para o menu
