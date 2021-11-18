@@ -86,7 +86,7 @@ public class G6 {
 					return true;
 				default:
 					System.out.println("Nivel Invalido");
-					principal.coteTime(3000);
+					//principal.coteTime(3000);
 					principal.menu(5); // Caso o nivel digitado não esteja condicionando, é redirecionado para o menu
 					return false;
 			}
@@ -116,9 +116,9 @@ public class G6 {
 			// Caso o jogador decida sair do jogo
 			if (data.equalsIgnoreCase("sair")) principal.exit();
 
-			if (data.toLowerCase().equals(cQuestion) && nQuestion <= 7) {
+			if (data.toLowerCase().equals(cQuestion) && nQuestion <= 7 && eLife >= 0) {
 				if (nQuestion == 7){ // Se o jogador acertou a questão ele é redirecionado para o final da história
-					principal.clearScreen();
+					//principal.clearScreen();
 					principal.stories(nQuestion, true);
 					principal.stories(10, true);
 					return true;
@@ -128,21 +128,21 @@ public class G6 {
 						case 1: // Histórias e desafios - Fácil
 							System.out.println("\n Resposta correta \n");
 							principal.stories(nQuestion, true);
-							principal.coteTime(3000);
+							//principal.coteTime(3000);
 							principal.easy(nQuestion, this.push, eLife);
 							return true;
 
 						case 2: // Histórias e desafios - Médio
 							System.out.println("\n Resposta correta \n");
 							principal.stories(nQuestion, true);
-							principal.coteTime(3000);
+							//principal.coteTime(3000);
 							principal.medium(nQuestion, this.push, eLife);
 							return true;
 							
 						case 3: // Histórias e desafios - Difícil
 							System.out.println("\n Resposta correta \n");
 							principal.stories(nQuestion, true);
-							principal.coteTime(3000);
+							//principal.coteTime(3000);
 							principal.hard(nQuestion, this.push, eLife);
 							return true;
 						
@@ -151,13 +151,15 @@ public class G6 {
 							return false;
 					}
 				}
-			} else {
+			} else if (nQuestion <= 7 && eLife >= 0) {
 				System.out.println("\n Resposta incorreta \n");
-
 				principal.stories(nQuestion, false);
 				
-				if (!bonusQ) eLife--;
+				if (!bonusQ){
+					eLife--;
 
+				}
+				 
 				if (!bonus && eLife == 0) { // Verifica se já foi realizado push e se qtde de vidas extras é igual a 0
 					principal.stories(0, false);
 					bonus = true;
@@ -202,7 +204,9 @@ public class G6 {
 					default:
 						return false;
 				}
-			}	
+			} else {
+				return false;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e);
@@ -222,13 +226,13 @@ public class G6 {
 	public void easy(int nQuestion, boolean noPush, int extraLife) throws Exception {
 		
 		// Limpando a tela
-		principal.clearScreen();
+		//principal.clearScreen();
 		String alternativa;	
 
 		if (noPush) {
 			principal.stories(8, false);
 			System.out.println("GAME OVER!");
-			principal.exit();
+			//principal.exit();
 		} else {
 			System.out.println("Você tem "+ extraLife + " vidas extra(s) restante(s)");
 			// Saída histórias positivas
@@ -389,7 +393,7 @@ public class G6 {
 	 */
 	public void medium(int nQuestion, boolean noPush, int extraLife) {
 		// Limpando a tela
-		principal.clearScreen();
+		//principal.clearScreen();
 
 		try {
 			String alternativa;	
@@ -398,7 +402,7 @@ public class G6 {
 			if (noPush) {
 				principal.stories(8, false);
 				System.out.println("GAME OVER!");
-				principal.exit();
+				//principal.exit();
 			} else {
 				System.out.println("Você tem "+ extraLife + " vidas extra(s) restante(s)");
 				
@@ -635,7 +639,7 @@ public class G6 {
 	 */
 	public void hard(int nQuestion, boolean noPush, int extraLife) {
 		// Limpando a tela
-		principal.clearScreen();
+		//principal.clearScreen();
 		try {
 			String alternativa;	
 			int index = 0;
@@ -643,7 +647,7 @@ public class G6 {
 			if (noPush) {
 				principal.stories(8, false);
 				System.out.println("GAME OVER!");
-				principal.exit();
+				//principal.exit();
 			} else {
 				System.out.println("Você tem "+ extraLife + " vidas extra(s) restante(s)");
 				// SaÃ­da histÃ³rias positivas
@@ -860,7 +864,7 @@ public class G6 {
 	 * @return
 	*/
 	public boolean bonusQuestion(int nQuestion, String alternativa) {
-		principal.clearScreen();
+		//principal.clearScreen();
 
 		System.out.println("\n Você recebeu uma pergunta bônus, acertando irá ganhar mais uma vida extra e pulará a pergunta anterior.");
 		
@@ -899,107 +903,107 @@ public class G6 {
 	public boolean stories(int cap, boolean cResponse) throws Exception{
 		switch (cap) {
 			case 0:
-				principal.coteTime(100);
+				//principal.coteTime(100);
 				System.out.println("\t Mãe Natureza: Parece que você está sem vidas extras, não se preocupe, acerte esse desafio bônus e ganhe novas vidas extras. \n");
-				principal.coteTime(5000);
+				//principal.coteTime(5000);
 				return true;
 			case 1:
-				principal.coteTime(100);
+				//principal.coteTime(100);
 				if (cResponse) 
 					System.out.println("\t Mãe Natureza: O que foi isso? Uma questão? Verdade elas podem meio que aparecer do nada. Vejo que acertou, só para explicar, quando você acerta ou erra gera consequências, quando acerta a máquina me ajuda a me recuperar, porém se erra ela começa a destruir aquilo que me ajuda a manter minha energia. \n");
 				else 
 					System.out.println("\t Mãe Natureza: O que foi isso? Uma questão? Verdade elas podem meio que aparecer do nada. Vejo que errou, só para explicar, quando você erra ou acerta gera consequências, quando acerta a máquina me ajuda a me recuperar, porém se erra ela começa a destruir aquilo que me ajuda a manter minha energia. \n");
-					principal.coteTime(100);
+					//principal.coteTime(100);
 					System.out.println("\t Mãe Natureza: Eu sei o que deve estar pensando, tipo meu deus por que a máquina que era para ensinar está ajudando ou destruindo as coisas? A explicação para isso é a modificação que eu fiz nela. Eu coloquei apenas a parte boa claro, porém a própria máquina fez a parte contraria também. \n");
 
-				principal.coteTime(5000);
+				//principal.coteTime(5000);
 				return true;
 			case 2:
-				principal.coteTime(100);
+				//principal.coteTime(100);
 				if (cResponse) 
 					System.out.println("\t Mãe Natureza: Vejo que fiz a escolha certa de pedir a sua ajuda, pode ser apenas um pouco, mas já vejo que minha energia está se recuperando. Veja você plantou arvores por toda essa região, muito obrigada. \n");
 				else 
 					System.out.println("\t Mãe Natureza: A máquina começou a desmatar toda a região, estou me sentindo fraca, mas não se preocupe, conforme você acertar as questões eu serei capaz de me recuperar. \n");
 
-				principal.coteTime(5000);
+				//principal.coteTime(5000);
 				return true;
 			case 3:
-				principal.coteTime(100);
+				//principal.coteTime(100);
 				if (cResponse) 
 					System.out.println("\t Mãe Natureza: Já consigo sentir a minha força aumentando novamente, muito obrigada, mas ainda tem um longo caminho para percorrer, dessa vez a máquina despoluiu a nascente desse rio. \n");
 				else 
 					System.out.println("\t Mãe Natureza: Minha força está diminuindo, não se preocupe sei que você consegue acertar na próxima, veja, a máquina acabou de poluir ainda mais a nascente do rio. \n");
 				return true;
 			case 4:
-				principal.coteTime(100);
+				//principal.coteTime(100);
 				if (cResponse) 
 					System.out.println("\t Mãe Natureza: Certo, acho que iremos conseguir recuperar minha força, apenas tente manter acertando as questões, a máquina começou a despoluir o ar, retirando todo o excesso de gás carbônico. \n");
 				else 
 					System.out.println("\t Mãe Natureza: Cof.Cof. A máquina está soltando gases tóxicos, se continuar assim a situação pode ser irreversível. \n");
 				
-				principal.coteTime(5000);
+				//principal.coteTime(5000);
 				return true;
 			case 5:
-				principal.coteTime(100);
+				//principal.coteTime(100);
 				if (cResponse) 
 					System.out.println("\t Mãe Natureza: A máquina está retirando a toxicidade do solo, isto é incrível!! Muito obrigada, se continuar assim tenho certeza de que vai conseguir. \n");
 				else 
 					System.out.println("\t Mãe Natureza: A máquina começou a liberar resíduos tóxicos no solo, isto é bem ruim, continue com foco para conseguirmos reverter essa situação. \n");
 
-				principal.coteTime(5000);
+				//principal.coteTime(5000);
 				return true;
 			case 6:
-				principal.coteTime(100);
+				//principal.coteTime(100);
 				if (cResponse) 
 					System.out.println("\t Mãe Natureza: Vejo que a flora está conseguindo se estabelecer com a ajuda da máquina, se continuar dessa maneira logo a fauna conseguirá se estabelecer também. \n");
 				else 
 					System.out.println("\t Mãe Natureza: A situação não poderia ser pior, a máquina está derramando óleo no rio, assim as espécies que conseguiram sobreviver até agora irão morrer asfixiadas. \n");
 
-				principal.coteTime(5000);
+				//principal.coteTime(5000);
 				return true;
 			case 7:
-				principal.coteTime(100);
+				//principal.coteTime(100);
 				if (cResponse)
 					System.out.println("\t Mãe Natureza: Consigo sentir, minha energia e força estão recuperados, muito obrigado por sua ajuda, eu queria ter alguma forma de retribuir, porém por agora eu preciso cuidar de todo esse planeta, espero que nos encontremos outra vez, e não se preocupe eu irei te retirar dessa máquina. \n");
 				else
 					System.out.println("\t Mãe natureza: Estou sentindo minha energia esvaindo, o oxigênio está deteriorado, os seres deste planeta irão morrer! :(");
 				
-				principal.coteTime(5000);
+				//principal.coteTime(5000);
 				return true;
 			case 8:
-				principal.coteTime(100);
+				//principal.coteTime(100);
 				System.out.println("\t Mãe Natureza: Acho que agora se tornou irreversível, pobres animais não perceberam que estavam apenas se autodestruindo, muito obrigado por tentar me ajudar, mas agora é um adeus. Queria ter passado mais tempo ao seu lado. \n");
-				principal.coteTime(5000);
+				//principal.coteTime(5000);
 				return true;
 			case 9:
-				principal.coteTime(100);
+				//principal.coteTime(100);
 				System.out.println("\t Mãe Natureza: Ainda temos alguma chance sobrando, foque e eu tenho certeza de que você irá conseguir \n");
-				principal.coteTime(3000);
+				//principal.coteTime(3000);
 				return true;
 			case 10: 
 				System.out.println("\t Mãe Natureza: " + name + " você é um herói, graças a você todos os seres deste planeta poderão viver... Parabéns, você é a pessoa mais inteligente que já vi.");
 				System.out.println("\t Mãe Natureza: Ahhh... Mil perdões esqueci de te tirar deste ambiente virtual... Até a próxima.");
-				principal.coteTime(8000);
-				principal.clearScreen();
+				//principal.coteTime(8000);
+				//principal.clearScreen();
 				
 				System.out.println("\t                           8888888888 8888888 888b     d888 ");
-				principal.coteTime(800);
+				//principal.coteTime(800);
 				System.out.println("\t                           888          888   8888b   d8888 ");
-				principal.coteTime(700);
+				//principal.coteTime(700);
 				System.out.println("\t                           888          888   88888b.d88888 ");
-				principal.coteTime(600);
+				//principal.coteTime(600);
 				System.out.println("\t                           8888888      888   888Y88888P888 ");
-				principal.coteTime(500);
+				//principal.coteTime(500);
 				System.out.println("\t                           888          888   888 Y888P 888 ");
-				principal.coteTime(400);
+				//principal.coteTime(400);
 				System.out.println("\t                           888          888   888  Y8P  888 ");
-				principal.coteTime(200);
+				//principal.coteTime(200);
 				System.out.println("\t                           888          888   888   '   888 ");
-				principal.coteTime(100);
+				//principal.coteTime(100);
 				System.out.println("\t                           888        8888888 888       888 ");
-				principal.coteTime(5000);
+				//principal.coteTime(5000);
 				principal.credits();
-				principal.exit();
+				//principal.exit();
 				return true;
 			case 11:
 				System.out.println("\t Mãe Natureza: Oi, finalmente acordou. Estive esperando por isso por muito tempo, eu preciso da sua ajuda. Eu sei que você deve estar cheio de dúvidas, porém não temos tempo para isso. Prazer eu sou o que vocês humanos chamam de mãe natureza, e você? \n");
@@ -1007,11 +1011,11 @@ public class G6 {
 			case 12:
 				System.out.println("\n");
 				System.out.println("\t Mãe Natureza: Me desculpe não me apresentar formalmente, porém atualmente da maneira que estou eu posso apenas me manifestar como uma voz em sua cabeça. Enfim chega de demora, preciso da sua ajuda para restaurar a minha forma original, se não conseguir eu irei morrer, e comigo todo o planeta \n");
-				principal.coteTime(100);
+				//principal.coteTime(100);
 				System.out.println("\t Mãe Natureza: Será que está funcionando? Oi? Ufa acho que funcionou, só para ter certeza, consegue me dizer o seu nome? \n");
-				principal.coteTime(100);
+				//principal.coteTime(100);
 				System.out.println("\t " + name + ": Meu nome é " + name + " \n");
-				principal.coteTime(1000);
+				//principal.coteTime(1000);
 				System.out.println("\t Mãe Natureza: Certo acho que está funcionando, bom antes de me introduzir para você eu deveria explicar a situação, eu transferi a sua consciência para uma máquina que encontrei em um local onde ensinavam pessoas como programar e tudo mais, então provavelmente para manter o funcionamento aparecerão questões que você precisa acertar ok? \n");
 				return true;
 			case 13:
@@ -1062,7 +1066,7 @@ public class G6 {
 		try {
 			switch (option) {
 				case 1: // Jogo
-					principal.clearScreen(); // Limpando a tela
+					//principal.clearScreen(); // Limpando a tela
 					// Dando introdução ao jogo
 					principal.stories(11, true);
 					// Armazenando nome em variável global
@@ -1081,10 +1085,10 @@ public class G6 {
 				case 3: // Instruções
 					principal.instructions();
 				case 4: // Sair
-					principal.exit();
+					//principal.exit();
 					break;
 				case 5: // Caso o usuário digite algum valor não aceitável no level
-					principal.clearScreen();
+					//principal.clearScreen();
 					System.out.println("\t Digite o nível desejável, só que dessa vez de 1 até 3! \n");
 					System.out.print("\t Digite, de 1 a 3 qual seu nível em programação? ");
 					level = input.nextInt();

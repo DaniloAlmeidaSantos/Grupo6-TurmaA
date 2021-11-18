@@ -64,11 +64,11 @@ public class GatewayTest {
 			if (!gateway) {
 				System.out.println("Passou no teste! - CT03");
 				passedOnTest++;
-				arrPassedOnTest.add("3.level"+i);
+				arrPassedOnTest.add("3.level."+i);
 			} else {
 				System.out.println("Não passou no teste! - CT03");
 				noPassedOnTest++;
-				arrNoPassedOnTest.add("3.level"+i);
+				arrNoPassedOnTest.add("3.level."+i);
 			}
 		}
 	}
@@ -86,11 +86,11 @@ public class GatewayTest {
 			if (gateway) {
 				System.out.println("Passou no teste! - CT04");
 				passedOnTest++;
-				arrPassedOnTest.add("4.level"+i);
+				arrPassedOnTest.add("4.level."+i);
 			} else {
 				System.out.println("Não passou no teste! - CT04");
 				noPassedOnTest++;
-				arrNoPassedOnTest.add("4.level"+i);
+				arrNoPassedOnTest.add("4.level."+i);
 			}
 		}
 	}
@@ -117,17 +117,19 @@ public class GatewayTest {
 	 * Retorna os resultados da execução dos testes
 	 */
 	public static void expectedResults() {
-		System.out.println("Casos de testes com resultados esperados com sucesso: " + passedOnTest);
+		System.out.println("\nCasos de testes com resultados esperados com sucesso: " + passedOnTest);
 		System.out.println("Casos de testes com falhas: " + noPassedOnTest);
 
 		System.out.println("\n Caso de teste com retorno positivo: ");
 		for (String CTOnPassed : arrPassedOnTest) {
-			System.out.print("\t" + CTOnPassed);
+			if (CTOnPassed.length() == 0) System.out.println("\t Sem retorno positivo!"); 
+			else System.out.print("\t" + CTOnPassed);
 		}
 
 		System.out.println("\n Caso de teste com retorno negativo: ");
 		for (String CTNoPassed : arrNoPassedOnTest) {
-			System.out.print("\t" + CTNoPassed);
+			if (arrNoPassedOnTest.isEmpty()) System.out.println("\t Sem retorno negativo!"); 
+			else System.out.print("\t" + CTNoPassed);
 		}
 	}
 
